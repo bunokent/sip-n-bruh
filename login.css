@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-image: url("./assets/login/bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}
+
+main {
+  background-color: hsla(0, 0%, 85%, 0.5);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  width: 420px;
+}
+
+a {
+  color: black;
+}
+
+#username,
+#password {
+  display: block;
+  width: 100%;
+  border-radius: 2rem;
+  border: none;
+  background-color: hsl(0, 0%, 85%);
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+main form > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main form > div > div {
+  display: flex;
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+}
+
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
+#submit {
+  width: 100%;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  border: none;
+  background-color: hsl(0, 0%, 85%);
+  font-weight: 700;
+  font-size: 18px;
+  margin-block: 1.5rem;
+}
+
+#submit:hover {
+  cursor: pointer;
+}
