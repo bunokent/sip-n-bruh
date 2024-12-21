@@ -30,14 +30,23 @@ prevBtn.addEventListener("click", function () {
     topOverlay.classList.remove("fade-in");
     bottomOverlay.classList.remove("fade-in");
     titleEl.classList.remove("text-fade-out");
-  }, 850);
+  }, 875);
 });
 
 nextBtn.addEventListener("click", function () {
-  currentFlavor = currentFlavor != 6 ? (currentFlavor += 1) : 1;
-  currentEl.textContent = `0${currentFlavor}`;
-  titleEl.textContent = flavors[currentFlavor - 1];
-  coffeeImg.src = `./assets/menu/coffee${currentFlavor}.png`;
+  topOverlay.classList.add("fade-in");
+  bottomOverlay.classList.add("fade-in");
+  titleEl.classList.add("text-fade-out");
+  setTimeout(() => {
+    currentFlavor = currentFlavor != 6 ? (currentFlavor += 1) : 1;
+    currentEl.textContent = `0${currentFlavor}`;
+    titleEl.textContent = flavors[currentFlavor - 1];
+    coffeeImg.src = `./assets/menu/coffee${currentFlavor}.png`;
+    coffee.classList.remove("fade-in");
+    topOverlay.classList.remove("fade-in");
+    bottomOverlay.classList.remove("fade-in");
+    titleEl.classList.remove("text-fade-out");
+  }, 875);
 });
 
 window.addEventListener("load", function () {
@@ -50,5 +59,5 @@ window.addEventListener("load", function () {
   introImg.classList.add("fade-out");
   this.setTimeout(() => {
     introOverlay.classList.add("fade-out");
-  }, 1000);
+  }, 1500);
 });

@@ -5,14 +5,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 1s ease;
+  transition: all 1.5s ease;
   z-index: 5;
 }
 
 .intro-overlay > img {
   z-index: 6;
   opacity: 1;
-  transition: all 900ms ease;
+  transition: all 1.4s ease;
 }
 
 .intro-overlay > img.fade-out {
@@ -26,7 +26,7 @@
   left: 0;
   width: 50%;
   height: 100vh;
-  transition: all 1s ease-out;
+  transition: all 1.4s ease-out;
 }
 
 .right-overlay {
@@ -36,7 +36,7 @@
   right: 0;
   width: 50%;
   height: 100vh;
-  transition: all 1s ease-out;
+  transition: all 1.4s ease-out;
 }
 
 .right-overlay.fade-out {
