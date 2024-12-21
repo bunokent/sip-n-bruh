@@ -114,12 +114,14 @@ h1 {
   font-family: "Playfair Display", serif;
   font-weight: 900;
   margin-block: 2rem;
+  transition: opacity 500ms ease-in-out;
 }
 
-section:last-of-type > p {
+#description {
+  position: relative;
   font-weight: 300;
   line-height: 2rem;
-  height: 100px;
+  height: 150px;
 }
 
 button {
@@ -198,9 +200,55 @@ button:hover {
 }
 
 h1 {
-  transition: opacity 500ms ease-in-out;
 }
 
 .text-fade-out {
   opacity: 0;
+}
+
+#description::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background-color: #e7e1d9;
+  transition: width 500ms ease;
+}
+
+#description.fade-out::after {
+  width: 100%;
+}
+
+@media screen and (max-width: 1460px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  nav ul {
+    padding: 2rem 4rem;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  nav ul {
+    padding: 2rem 3rem;
+  }
+  nav ul li {
+    margin-right: 2rem;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  nav ul li {
+    margin-right: 1rem;
+  }
 }
