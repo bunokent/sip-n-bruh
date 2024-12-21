@@ -1,0 +1,54 @@
+.intro-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s ease;
+  z-index: 5;
+}
+
+.intro-overlay > img {
+  z-index: 6;
+  opacity: 1;
+  transition: all 900ms ease;
+}
+
+.intro-overlay > img.fade-out {
+  opacity: 0;
+}
+
+.left-overlay {
+  background-color: #895d39;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100vh;
+  transition: all 1s ease-out;
+}
+
+.right-overlay {
+  background-color: bisque;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100vh;
+  transition: all 1s ease-out;
+}
+
+.right-overlay.fade-out {
+  right: -100%;
+}
+
+.left-overlay.fade-out {
+  left: -100%;
+}
+
+.intro-overlay.fade-out {
+  opacity: 0;
+  display: none;
+  pointer-events: none;
+}
