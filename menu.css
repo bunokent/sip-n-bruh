@@ -1,0 +1,157 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+}
+
+body {
+  max-height: 100vh;
+  background-color: #e7e1d9;
+  overflow: hidden;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  list-style: none;
+  padding: 2rem 5rem;
+}
+
+nav ul li {
+  margin-right: 3rem;
+  position: relative;
+}
+
+nav ul li a {
+  color: #000;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+nav ul li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  width: 0%;
+  height: 3px;
+  border-radius: 2px;
+  background-color: #9d6d4d;
+  transition: all 500ms ease;
+}
+
+nav ul li:hover::after {
+  width: 100%;
+}
+
+nav ul li.active::after {
+  width: 100%;
+}
+
+main {
+  display: flex;
+}
+
+main section {
+  flex-basis: 50%;
+}
+
+main section:first-of-type > img {
+  display: block;
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+main section:last-of-type {
+  padding: 15rem 5rem;
+}
+
+section:last-of-type > div {
+  width: 90px;
+}
+
+section:last-of-type > div {
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+section:last-of-type > div > p:first-of-type {
+  padding-left: 15px;
+}
+
+section:last-child > div > p:last-of-type {
+  text-align: right;
+  padding-right: 10px;
+}
+
+div.line {
+  width: 100%;
+  height: 0.0625rem;
+  background-color: #976a48;
+  transform: rotate(-30deg);
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  margin-block: 2rem;
+}
+
+section:last-child > p {
+  font-weight: 300;
+  line-height: 2rem;
+}
+
+button {
+  background-color: #be986d;
+  border: none;
+  padding: 1rem 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 3rem;
+  transition: all 500ms ease;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+}
+
+.btn-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 5rem;
+}
+
+.btn-container button {
+  background-color: transparent;
+  padding: 0;
+}
+
+.btn-container button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+#prev:hover {
+  transform: scale(1.1);
+}

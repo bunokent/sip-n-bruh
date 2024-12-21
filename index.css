@@ -38,7 +38,7 @@ nav ul {
   align-items: center;
   justify-content: right;
   list-style: none;
-  padding: 2rem 5rem;
+  padding: 1rem 2rem;
 }
 
 nav ul li {
@@ -88,7 +88,7 @@ main {
   flex-direction: column;
 }
 
-main img {
+main > img {
   margin-top: 2rem;
   width: 250px;
 }
@@ -105,4 +105,37 @@ main h2 {
   color: #fef6d9;
   font-size: 40px;
   letter-spacing: 3px;
+}
+
+main a {
+  background-color: white;
+  color: black;
+  border-radius: 20rem;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 3rem;
+  margin-top: 2rem;
+  gap: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: all 500ms ease;
+}
+
+main a > svg {
+  width: 40px;
+}
+main a > svg path {
+  transition: all 1s ease;
+}
+
+main a:hover > svg path {
+  stroke: white;
+}
+
+main a:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
 }
