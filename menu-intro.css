@@ -7,16 +7,7 @@
   justify-content: center;
   transition: all 1.5s ease;
   z-index: 5;
-}
-
-.intro-overlay > img {
-  z-index: 6;
-  opacity: 1;
-  transition: all 1.4s ease;
-}
-
-.intro-overlay > img.fade-out {
-  opacity: 0;
+  pointer-events: none;
 }
 
 .left-overlay {
@@ -27,6 +18,9 @@
   width: 50%;
   height: 100vh;
   transition: all 1.4s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .right-overlay {
@@ -37,6 +31,9 @@
   width: 50%;
   height: 100vh;
   transition: all 1.4s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .right-overlay.fade-out {
@@ -45,10 +42,4 @@
 
 .left-overlay.fade-out {
   left: -100%;
-}
-
-.intro-overlay.fade-out {
-  opacity: 0;
-  display: none;
-  pointer-events: none;
 }

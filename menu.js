@@ -50,14 +50,8 @@ nextBtn.addEventListener("click", function () {
 });
 
 window.addEventListener("load", function () {
-  const introOverlay = document.querySelector(".intro-overlay");
-  const introImg = document.querySelector(".intro-overlay img");
   const leftOverlay = document.querySelector(".left-overlay");
   const rightOverlay = document.querySelector(".right-overlay");
   leftOverlay.classList.add("fade-out");
   rightOverlay.classList.add("fade-out");
-  introImg.classList.add("fade-out");
-  this.setTimeout(() => {
-    introOverlay.classList.add("fade-out");
-  }, 1500);
 });

@@ -29,8 +29,60 @@ body {
   z-index: -1;
 }
 
+header {
+  display: flex;
+}
+
+header > div {
+  flex-basis: 50%;
+  display: flex;
+  padding: 1rem 7rem;
+}
+
+.music-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid white;
+  width: 50px;
+  height: 50px;
+  border-radius: 2rem;
+  overflow: hidden;
+  transition: all 500ms ease;
+  color: white;
+}
+
+.music-container:hover {
+  background-color: black;
+  cursor: pointer;
+  width: 250px;
+  border-radius: 2rem;
+  padding-right: 1rem;
+}
+
+.music-container > span {
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: width 250ms ease;
+}
+
+.music-container:hover > span {
+  width: auto;
+  margin-left: 1rem;
+}
+
+.music-container > div img {
+  display: block;
+}
+
 a {
   text-decoration: none;
+}
+
+nav {
+  flex-basis: 50%;
 }
 
 nav ul {
@@ -38,7 +90,7 @@ nav ul {
   align-items: center;
   justify-content: right;
   list-style: none;
-  padding: 1rem 2rem;
+  padding: 1rem 0rem;
 }
 
 nav ul li {
@@ -61,7 +113,7 @@ nav ul li.text-link::after {
   width: 0%;
   height: 3px;
   border-radius: 2px;
-  background-color: #9d6d4d;
+  background-color: #895d39;
   transition: all 500ms ease;
 }
 
@@ -73,11 +125,27 @@ nav ul li.active::after {
   width: 100%;
 }
 
+nav ul li:hover a {
+  color: #fef6d9;
+}
+
 nav ul li.icon-link {
   transition: all 500ms ease;
 }
 
-nav ul li.icon-link:hover {
+svg path {
+  transition: 500ms ease;
+}
+
+nav ul li.icon-link:hover svg path {
+  stroke: #fef6d9;
+}
+
+svg {
+  transition: transform 500ms ease;
+}
+
+svg:hover {
   transform: scale(1.1);
 }
 
