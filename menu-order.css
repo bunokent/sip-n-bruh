@@ -6,6 +6,7 @@
   left: 0;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
   width: 100%;
   height: 100%;
   display: flex;
@@ -13,7 +14,7 @@
   justify-content: center;
 }
 
-.order-overlay main {
+.order-overlay #first-process {
   position: absolute;
   top: -100%;
   z-index: 11;
@@ -21,17 +22,18 @@
   display: flex;
   flex-direction: column;
   padding: 2rem;
+  width: 480px;
   background-color: white;
   transition: all 500ms ease;
 }
 
-.order-overlay main > div:first-of-type {
+.order-overlay #first-process > div:first-of-type {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 }
 
-.order-overlay main > div:first-of-type > div {
+.order-overlay #first-process > div:first-of-type > div {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -48,7 +50,9 @@
 }
 
 input[type="number"] {
+  width: 100%;
   padding: 0.5rem;
+  font-weight: 700;
   border: 1px solid brown;
   margin-bottom: 2rem;
 }
@@ -58,12 +62,13 @@ input[type="range"] {
   margin-right: 1.3rem;
 }
 
-.order-overlay main > div:last-of-type {
+.order-overlay #first-process > div:last-of-type {
   display: flex;
   gap: 3rem;
+  margin-bottom: 1rem;
 }
 
-.order-overlay main > div {
+.order-overlay #first-process > div:not(:last-of-type) {
   margin-bottom: 2rem;
 }
 
@@ -110,10 +115,96 @@ label:not([for="sugar-level"]) {
   cursor: pointer;
 }
 
-.order-overlay main.fade-in {
+#first-process.fade-in {
   top: 50%;
 }
 
-.order-overlay main.fade-out {
+#first-process.fade-out {
   top: -100%;
+}
+.hide-error {
+  opacity: 0;
+}
+
+/* error */
+#first-process p.empty-error {
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.75rem;
+  transition: all 500ms ease;
+  color: red;
+}
+
+.show-error {
+  opacity: 1;
+}
+
+.order-overlay #second-process {
+  background-color: white;
+  width: 480px;
+  padding: 2rem;
+}
+
+#second-process div:first-of-type p {
+  font-size: 1rem;
+  padding: 0.5rem 0rem 0.5rem 1.2rem;
+}
+
+#second-process div:first-of-type div {
+  display: flex;
+  justify-content: space-between;
+}
+
+#second-process div:first-of-type div > div {
+  display: block;
+}
+
+#second-process ul {
+  padding-left: 3rem;
+}
+
+h3 {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+#second-process > p {
+  font-weight: 700;
+}
+
+#payment {
+  margin: 1rem 0rem 1.5rem 0rem;
+  padding: 1rem;
+}
+
+.note p {
+  font-style: italic;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.note span {
+  font-weight: 700;
+}
+
+.order-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.order-btn-container button {
+  flex-basis: 500%;
+}
+
+/* initial state for other process */
+.hide {
+  display: none;
+  pointer-events: none;
 }

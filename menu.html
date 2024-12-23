@@ -71,10 +71,11 @@
       </button>
     </div>
 
-    <!-- order -->
+    <!-- order-process -->
 
+    <!-- first process -->
     <div class="order-overlay">
-      <main>
+      <div id="first-process">
         <div>
           <div>
             <img
@@ -89,7 +90,7 @@
           </button>
         </div>
         <p>Pieces</p>
-        <input type="number" min="1" value="1" />
+        <input type="number" min="1" value="1" id="order-pieces" />
         <p>Sugar Level</p>
         <div>
           <input
@@ -130,7 +131,60 @@
         </div>
         <input type="text" id="address" placeholder="Enter your address" />
         <button id="buy-btn">Buy Now</button>
-      </main>
+        <p class="empty-error hide-error">
+          Please fill out all required fields.
+        </p>
+      </div>
+
+      <!-- second process -->
+      <div id="second-process" class="hide">
+        <h3>CHECKOUT</h3>
+        <p>Order Details</p>
+        <div>
+          <div>
+            <div>
+              <p id="checkout-flavor"></p>
+              <ul>
+                <li>Sugar Level - <span id="checkout-sugar-level"></span></li>
+                <li>Add On - <span id="checkout-add-on"></span></li>
+              </ul>
+            </div>
+            <p id="total-price"></p>
+          </div>
+          <hr />
+          <div>
+            <p>TOTAL</p>
+            <p>₱ <span id="total">90.00</span></p>
+          </div>
+        </div>
+        <div class="address-container hide">
+          <p style="font-weight: 700">Address</p>
+          <p
+            id="checkout-address"
+            style="padding-left: 1.2rem; font-size: 1rem"
+          >
+            San Agustin, Talibon, Bohol
+          </p>
+        </div>
+        <input
+          type="number"
+          id="payment"
+          placeholder="Enter your payment"
+          min="1"
+        />
+        <div class="note hide">
+          <p>
+            <span>Please note: </span>A delivery surcharge applies to all orders
+            outside of Cordova. The surcharge is calculated at ₱20.00 per
+            kilometer from the town limits to your delivery address. You can pay
+            the total surcharge upon delivery.
+          </p>
+        </div>
+        <div class="order-btn-container">
+          <button id="back-to-first">Back</button>
+          <button id="place-order-btn">Place Order</button>
+        </div>
+      </div>
     </div>
     <script src="./preload.js"></script>
     <script src="./menu.js"></script>

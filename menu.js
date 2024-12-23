@@ -88,19 +88,17 @@ orderBtn.addEventListener("click", function () {
   document.getElementById(
     "order-img"
   ).src = `./assets/menu/coffee${currentFlavor}-crop.png`;
-  document.querySelector(".order-overlay main").classList.remove("fade-out");
-  setTimeout(() => {
-    orderOverlay.style.opacity = "1";
-    orderOverlay.style.pointerEvents = "auto";
-    document.querySelector(".order-overlay main").classList.add("fade-in");
-  }, 500);
+  document.getElementById("first-process").classList.remove("fade-out");
+  orderOverlay.style.opacity = "1";
+  orderOverlay.style.pointerEvents = "auto";
+  document.getElementById("first-process").classList.add("fade-in");
 });
 
 exitOrderBtn.addEventListener("click", function () {
-  document.querySelector(".order-overlay main").classList.remove("fade-in");
+  document.getElementById("first-process").classList.remove("fade-in");
 
   setTimeout(() => {
-    document.querySelector(".order-overlay main").classList.add("fade-out");
+    document.getElementById("first-process").classList.add("fade-out");
     orderOverlay.style.opacity = "0";
     orderOverlay.style.pointerEvents = "none";
     addOns.forEach((addOn) => {
@@ -117,6 +115,64 @@ exitOrderBtn.addEventListener("click", function () {
     sugarLevelEl.value = 50;
     document.querySelector('label[for="sugar-level"]').textContent = "50%";
   }, 500);
+});
+
+buyBtn.addEventListener("click", function () {
+  orderAddOn = "";
+  isAddOnEmpty = true;
+  for (let i = 0; i < addOns.length; i++) {
+    if (addOns[i].checked) {
+      orderAddOn = addOns[i].id;
+      isAddOnEmpty = false;
+      break;
+    }
+  }
+
+  isOrderOptionsEmpty = true;
+  isOrderOptionAddress = false;
+  for (let i = 0; i < orderOptions.length; i++) {
+    if (orderOptions[i].checked) {
+      if (orderOptions[i].id == "delivery") {
+        if (address.value === "") break;
+        else {
+          isOrderOptionsEmpty = false;
+          isOrderOptionAddress = true;
+        }
+      } else {
+        isOrderOptionsEmpty = false;
+        break;
+      }
+    }
+  }
+
+  if (isAddOnEmpty || isOrderOptionsEmpty)
+    document.querySelector("p.empty-error").classList.add("show-error");
+  else {
+    document.querySelector("p.empty-error").classList.remove("show-error");
+    const pieces = document.getElementById("order-pieces").value;
+    const priceTotal = 45 * pieces;
+
+    document.getElementById("checkout-flavor").textContent = `${
+      flavors[currentFlavor - 1]
+    } ${pieces}pc/s`;
+    document.getElementById(
+      "checkout-sugar-level"
+    ).textContent = `${sugarLevelEl.value}%`;
+    document.getElementById("checkout-add-on").textContent = `${orderAddOn}`;
+    document.getElementById("total-price").textContent = `₱ ${priceTotal}.00`;
+
+    if (isOrderOptionAddress) {
+      document.getElementById("checkout-address").textContent = address.value;
+      document.querySelector(".address-container").classList.remove("hide");
+      document.querySelector(".note").classList.remove("hide");
+    } else {
+      document.querySelector(".address-container").classList.add("hide");
+      document.querySelector(".note").classList.add("hide");
+    }
+
+    document.getElementById("first-process").style.display = "none";
+    document.getElementById("second-process").classList.remove("hide");
+  }
 });
 
 const orderDetails = [];
@@ -137,4 +193,9 @@ orderOptions.forEach((option) => {
       address.style.pointerEvents = "none";
     }
   });
+});
+
+document.getElementById("back-to-first").addEventListener("click", function () {
+  document.getElementById("second-process").classList.add("hide");
+  document.getElementById("first-process").style.display = "flex";
 });
