@@ -31,6 +31,9 @@
           <li class="active"><a href="./menu.html">Menu</a></li>
           <li><a href="./merchandise.html">Merchandise</a></li>
           <li><a href="./about.html">About</a></li>
+          <button id="cart" onclick="showCart()">
+            <img src="./assets/menu/cart.png" alt="cart button" width="40px" />
+          </button>
         </ul>
       </nav>
     </header>
@@ -73,8 +76,8 @@
 
     <!-- order-process -->
 
-    <!-- first process -->
     <div class="order-overlay">
+      <!-- first process -->
       <div id="first-process">
         <div>
           <div>
@@ -130,68 +133,29 @@
           </div>
         </div>
         <input type="text" id="address" placeholder="Enter your address" />
-        <button id="buy-btn">Buy Now</button>
+        <button id="add-to-cart-btn">Add to Cart</button>
         <p class="empty-error hide-error">
           Please fill out all required fields.
         </p>
       </div>
+    </div>
 
-      <!-- second process -->
-      <div id="second-process" class="hide">
-        <h3>CHECKOUT</h3>
-        <p>Order Details</p>
-        <div>
-          <div>
-            <div>
-              <p id="checkout-flavor"></p>
-              <ul>
-                <li>
-                  Sugar Level -
-                  <span
-                    id="checkout-sugar-level"
-                    style="font-weight: 300"
-                  ></span>
-                </li>
-                <li>
-                  Add On -
-                  <span id="checkout-add-on" style="font-weight: 300"></span>
-                </li>
-              </ul>
-            </div>
-            <p id="total-price"></p>
+    <!-- cart -->
+    <div class="side-cart hide-cart">
+      <button id="exit-cart" onclick="hideCart()">
+        <img src="./assets/menu/x.png" alt="exit cart button" width="40px" />
+      </button>
+      <div class="cart-container">
+        <div class="cart">
+          <div class="title">
+            <img
+              src="./assets/menu/coffee1-crop.png"
+              alt="coffee flavor"
+              width="100px"
+              style="border-radius: 50%"
+            />
+            <p>Cookies & Cream</p>
           </div>
-          <hr />
-          <div>
-            <p>TOTAL</p>
-            <p>₱ <span id="total">90.00</span></p>
-          </div>
-        </div>
-        <div class="address-container hide">
-          <p style="font-weight: 700">Address</p>
-          <p
-            id="checkout-address"
-            style="padding-left: 1.2rem; font-size: 1rem"
-          >
-            San Agustin, Talibon, Bohol
-          </p>
-        </div>
-        <input
-          type="number"
-          id="payment"
-          placeholder="Enter your payment"
-          min="1"
-        />
-        <div class="note hide">
-          <p>
-            <span>Please note: </span>A delivery surcharge applies to all orders
-            outside of Cordova. The surcharge is calculated at ₱20.00 per
-            kilometer from the town limits to your delivery address. You can pay
-            the total surcharge upon delivery.
-          </p>
-        </div>
-        <div class="order-btn-container">
-          <button id="back-to-first">Back</button>
-          <button id="place-order-btn">Place Order</button>
         </div>
       </div>
     </div>
