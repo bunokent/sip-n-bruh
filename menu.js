@@ -6,6 +6,7 @@ const descriptionEl = document.getElementById("description");
 const coffeeImg = document.querySelector("#coffee");
 const topOverlay = document.querySelector(".top-overlay");
 const bottomOverlay = document.querySelector(".bottom-overlay");
+const errorMessage = document.querySelector(".empty-error");
 
 const flavors = [
   "Cookies & Cream",
@@ -72,16 +73,12 @@ window.addEventListener("load", function () {
   rightOverlay.classList.add("fade-out");
 });
 
-// handle order
-
 const orderBtn = document.getElementById("order-btn");
-const buyBtn = document.getElementById("buy-btn");
 const exitOrderBtn = document.getElementById("exit-order");
 const orderOverlay = document.querySelector(".order-overlay");
 const sugarLevelEl = document.querySelector('input[type="range"]');
 const addOns = document.getElementsByName("add-on");
 const orderOptions = document.getElementsByName("order-option");
-const address = document.getElementById("address");
 
 orderBtn.addEventListener("click", function () {
   document.getElementById("order-flavor").textContent = titleEl.textContent;
@@ -109,9 +106,6 @@ exitOrderBtn.addEventListener("click", function () {
       option.checked = false;
     });
 
-    address.value = "";
-    address.style.display = "none";
-
     sugarLevelEl.value = 50;
     document.querySelector('label[for="sugar-level"]').textContent = "50%";
   }, 500);
@@ -125,23 +119,6 @@ sugarLevelEl.addEventListener("input", function () {
   ).textContent = `${sugarLevelEl.value}%`;
 });
 
-orderOptions.forEach((option) => {
-  option.addEventListener("input", function () {
-    if (option.id === "delivery") {
-      address.style.display = "block";
-      address.style.pointerEvents = "auto";
-    } else {
-      address.style.display = "none";
-      address.style.pointerEvents = "none";
-    }
-  });
-});
-
-document.getElementById("back-to-first").addEventListener("click", function () {
-  document.getElementById("second-process").classList.add("hide");
-  document.getElementById("first-process").style.display = "flex";
-});
-
 function showCart() {
   document.querySelector(".side-cart").classList.remove("hide-cart");
 }
@@ -149,3 +126,66 @@ function showCart() {
 function hideCart() {
   document.querySelector(".side-cart").classList.add("hide-cart");
 }
+
+let cartItems = 0;
+
+const addToCartBtn = document.getElementById("add-to-cart-btn");
+addToCartBtn.addEventListener("click", function () {
+  const cartContainer = document.querySelector(".cart-container");
+
+  let isAddOnEmpty = true;
+  let selectedAddOn = "";
+  for (let i = 0; i < addOns.length; i++) {
+    if (addOns[i].checked) {
+      isAddOnEmpty = false;
+      selectedAddOn = addOns[i].id;
+      break;
+    }
+  }
+
+  if (isAddOnEmpty) {
+    errorMessage.classList.add("show-error");
+  } else {
+    errorMessage.classList.remove("show-error");
+    cartItems++;
+    document.querySelector("#checkout-btn").classList.add("show");
+    document.querySelector("#empty-cart").classList.add("hide");
+    document.querySelector(".cart-count p").textContent = cartItems;
+
+    const flavor = flavors[currentFlavor - 1];
+    const pieces = document.getElementById("order-pieces").value;
+    const sugarLevel = sugarLevelEl.value;
+
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart");
+    cartItem.innerHTML = `
+      <div class="title">
+        <img src="./assets/menu/coffee${currentFlavor}-crop.png" alt="coffee flavor" width="100px" style="border-radius: 50%" />
+        <p>${flavor}</p>
+      </div>
+      <div class="cart-description">
+        <p>Quantity: <span>${pieces}</span></p>
+        <p>Sugar Level: <span>${sugarLevel}</span></p>
+        <p>Add On: <span>${selectedAddOn}</span></p>
+      </div>
+      <button class="remove-cart" style="margin-top: 0">Remove</button>
+    `;
+
+    cartContainer.appendChild(cartItem);
+
+    cartItem
+      .querySelector(".remove-cart")
+      .addEventListener("click", function () {
+        cartContainer.removeChild(cartItem);
+        cartItems--;
+
+        document.querySelector(".cart-count p").textContent = cartItems;
+        if (cartItems == 0) {
+          document.querySelector("#checkout-btn").classList.remove("show");
+          document.querySelector("#empty-cart").classList.remove("hide");
+        }
+      });
+
+    alert("Item added to cart!");
+  }
+});

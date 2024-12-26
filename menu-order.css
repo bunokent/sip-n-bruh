@@ -142,67 +142,6 @@ label:not([for="sugar-level"]) {
   opacity: 1;
 }
 
-.order-overlay #second-process {
-  background-color: white;
-  width: 480px;
-  padding: 2rem;
-}
-
-#second-process div:first-of-type p {
-  font-size: 1rem;
-  padding: 0.5rem 0rem 0.5rem 1.2rem;
-}
-
-#second-process div:first-of-type div {
-  display: flex;
-  justify-content: space-between;
-}
-
-#second-process div:first-of-type div > div {
-  display: block;
-}
-
-#second-process ul {
-  padding-left: 3rem;
-}
-
-h3 {
-  font-family: "Playfair Display", serif;
-  font-weight: 700;
-  font-size: 2rem;
-  text-align: center;
-  padding-bottom: 1.5rem;
-}
-
-#second-process > p {
-  font-weight: 700;
-}
-
-#payment {
-  margin: 1rem 0rem 1.5rem 0rem;
-  padding: 1rem;
-}
-
-.note p {
-  font-style: italic;
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.note span {
-  font-weight: 700;
-}
-
-.order-btn-container {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.order-btn-container button {
-  flex-basis: 500%;
-}
-
 /* initial state for other process */
 .hide {
   display: none;
@@ -216,11 +155,45 @@ h3 {
   background-color: transparent;
 }
 
-#cart:hover {
+.cart-btn-container {
+  position: relative;
+  transition: all 500ms ease;
+}
+
+.cart-btn-container:hover {
   transform: scale(1.1);
 }
 
+.cart-count {
+  position: absolute;
+  font-weight: 700;
+  color: white;
+  background-color: brown;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  top: 0;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+#checkout-btn {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  pointer-events: none;
+}
+
+#checkout-btn.show {
+  pointer-events: auto;
+  display: block;
+}
+
 .side-cart {
+  overflow-y: scroll;
   background-color: hsla(0, 0%, 100%, 0.626);
   backdrop-filter: blur(5px);
   height: 100vh;
@@ -230,6 +203,21 @@ h3 {
   right: 0;
   padding: 1rem;
   transition: all 700ms ease;
+}
+
+#empty-cart {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: "Playfair Display";
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #9c6c4a;
+  position: relative;
+  top: 20%;
+}
+
+#empty-cart.hide {
+  display: none;
 }
 
 #exit-cart {
@@ -244,10 +232,15 @@ h3 {
 
 .cart-container {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .cart {
-  background-color: red;
+  background-color: hsla(32, 34%, 56%, 0.623);
+  padding: 1rem;
+  text-align: center;
 }
 
 .cart .title {
@@ -258,4 +251,11 @@ h3 {
 
 .cart .title p {
   font-family: "Playfair Display";
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.cart-description p {
+  padding: 1rem;
+  text-align: left;
 }

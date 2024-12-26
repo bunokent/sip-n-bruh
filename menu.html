@@ -31,9 +31,16 @@
           <li class="active"><a href="./menu.html">Menu</a></li>
           <li><a href="./merchandise.html">Merchandise</a></li>
           <li><a href="./about.html">About</a></li>
-          <button id="cart" onclick="showCart()">
-            <img src="./assets/menu/cart.png" alt="cart button" width="40px" />
-          </button>
+          <div class="cart-btn-container">
+            <button id="cart" onclick="showCart()">
+              <img
+                src="./assets/menu/cart.png"
+                alt="cart button"
+                width="40px"
+              />
+            </button>
+            <div class="cart-count"><p>0</p></div>
+          </div>
         </ul>
       </nav>
     </header>
@@ -121,18 +128,6 @@
             <label for="hazelnut">Hazelnut</label>
           </div>
         </div>
-        <p>Order Options</p>
-        <div>
-          <div>
-            <input type="radio" name="order-option" id="pick-up" />
-            <label for="pick-up">Pick Up</label>
-          </div>
-          <div>
-            <input type="radio" name="order-option" id="delivery" />
-            <label for="delivery">Delivery</label>
-          </div>
-        </div>
-        <input type="text" id="address" placeholder="Enter your address" />
         <button id="add-to-cart-btn">Add to Cart</button>
         <p class="empty-error hide-error">
           Please fill out all required fields.
@@ -145,19 +140,9 @@
       <button id="exit-cart" onclick="hideCart()">
         <img src="./assets/menu/x.png" alt="exit cart button" width="40px" />
       </button>
-      <div class="cart-container">
-        <div class="cart">
-          <div class="title">
-            <img
-              src="./assets/menu/coffee1-crop.png"
-              alt="coffee flavor"
-              width="100px"
-              style="border-radius: 50%"
-            />
-            <p>Cookies & Cream</p>
-          </div>
-        </div>
-      </div>
+      <div class="cart-container"></div>
+      <button id="checkout-btn">Checkout</button>
+      <p id="empty-cart">Empty Cart!</p>
     </div>
     <script src="./preload.js"></script>
     <script src="./menu.js"></script>
