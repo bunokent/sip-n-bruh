@@ -80,6 +80,19 @@ const sugarLevelEl = document.querySelector('input[type="range"]');
 const addOns = document.getElementsByName("add-on");
 const orderOptions = document.getElementsByName("order-option");
 
+orderOptions.forEach((option) => {
+  const address = document.querySelector(".address");
+  option.addEventListener("click", function () {
+    if (this.id === "delivery") {
+      address.style.display = "block";
+      address.style.pointerEvents = "auto";
+    } else {
+      address.style.display = "none";
+      address.style.pointerEvents = "none";
+    }
+  });
+});
+
 orderBtn.addEventListener("click", function () {
   document.getElementById("order-flavor").textContent = titleEl.textContent;
   document.getElementById(
@@ -110,9 +123,6 @@ exitOrderBtn.addEventListener("click", function () {
     document.querySelector('label[for="sugar-level"]').textContent = "50%";
   }, 500);
 });
-
-const orderDetails = [];
-
 sugarLevelEl.addEventListener("input", function () {
   document.querySelector(
     'label[for="sugar-level"]'
@@ -128,6 +138,20 @@ function hideCart() {
 }
 
 let cartItems = 0;
+
+const orders = {};
+const ids = [];
+
+function generateId() {
+  let randomNumber;
+  while (true) {
+    randomNumber = Math.trunc(Math.random() * 100) + 1;
+    if (!ids.includes(randomNumber)) break;
+  }
+
+  ids.push(randomNumber);
+  return randomNumber;
+}
 
 const addToCartBtn = document.getElementById("add-to-cart-btn");
 addToCartBtn.addEventListener("click", function () {
@@ -153,8 +177,13 @@ addToCartBtn.addEventListener("click", function () {
     document.querySelector(".cart-count p").textContent = cartItems;
 
     const flavor = flavors[currentFlavor - 1];
-    const pieces = document.getElementById("order-pieces").value;
+    const quantity = document.getElementById("order-quantity").value;
     const sugarLevel = sugarLevelEl.value;
+
+    const details = [flavor, quantity, sugarLevel, selectedAddOn];
+    const id = generateId();
+    orders[id] = details;
+    console.log(orders);
 
     const cartItem = document.createElement("div");
     cartItem.classList.add("cart");
@@ -164,7 +193,7 @@ addToCartBtn.addEventListener("click", function () {
         <p>${flavor}</p>
       </div>
       <div class="cart-description">
-        <p>Quantity: <span>${pieces}</span></p>
+        <p>Quantity: <span>${quantity}</span></p>
         <p>Sugar Level: <span>${sugarLevel}</span></p>
         <p>Add On: <span>${selectedAddOn}</span></p>
       </div>
@@ -178,6 +207,8 @@ addToCartBtn.addEventListener("click", function () {
       .addEventListener("click", function () {
         cartContainer.removeChild(cartItem);
         cartItems--;
+        delete orders[id];
+        console.log(orders);
 
         document.querySelector(".cart-count p").textContent = cartItems;
         if (cartItems == 0) {
@@ -189,3 +220,42 @@ addToCartBtn.addEventListener("click", function () {
     alert("Item added to cart!");
   }
 });
+
+const checkoutContainer = document.querySelector(".checkout-container");
+function checkOut() {
+  document.getElementById("checkout-process").classList.add("show");
+  orderOverlay.style.opacity = "1";
+  orderOverlay.style.pointerEvents = "auto";
+  let total = 0;
+  const totalPrice = document.querySelector(".total-price");
+  Object.values(orders).forEach((order) => {
+    const checkoutItem = document.createElement("div");
+    let flavor = order[0];
+    let quantity = order[1];
+    let sugarLevel = order[2];
+    let addOn = order[3];
+    total += quantity * 45;
+
+    checkoutItem.innerHTML = `
+    <div>
+      <p>${flavor} ${quantity}pc/s</p>
+      <p>₱ ${quantity * 45}.00</p>
+    </div>
+    <ul>
+      <li>Sugar Level - ${sugarLevel}%</li>
+      <li>Add On - ${addOn}</li>
+    </ul>
+  `;
+
+    checkoutContainer.appendChild(checkoutItem);
+  });
+
+  totalPrice.textContent = `₱ ${total}.00`;
+}
+
+function exitCheckout() {
+  document.getElementById("checkout-process").classList.remove("show");
+  orderOverlay.style.opacity = "0";
+  orderOverlay.style.pointerEvents = "none";
+  checkoutContainer.innerHTML = "";
+}

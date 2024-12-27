@@ -99,8 +99,8 @@
             <img src="./assets/menu/x.png" alt="exit button" width="30px" />
           </button>
         </div>
-        <p>Pieces</p>
-        <input type="number" min="1" value="1" id="order-pieces" />
+        <p>Quantity</p>
+        <input type="number" min="1" value="1" id="order-quantity" />
         <p>Sugar Level</p>
         <div>
           <input
@@ -133,6 +133,51 @@
           Please fill out all required fields.
         </p>
       </div>
+      <!-- checkout process -->
+      <div id="checkout-process">
+        <div>
+          <h3>Checkout</h3>
+          <button id="exit-checkout" onclick="exitCheckout()">
+            <img src="./assets/menu/x.png" alt="exit button" width="40px" />
+          </button>
+        </div>
+        <p>Order Details</p>
+        <div>
+          <div class="checkout-container"></div>
+          <hr />
+          <div>
+            <p>TOTAL</p>
+            <p class="total-price">10</p>
+          </div>
+        </div>
+        <input
+          type="number"
+          min="1"
+          placeholder="Enter your Payment"
+          style="margin-top: 1.5rem; padding: 1rem"
+        />
+        <p>Order Options</p>
+        <div class="order-options-container">
+          <div>
+            <input type="radio" name="order-option" id="pick-up" />
+            <label for="pick-up" style="margin-left: 0.2rem">Pick Up</label>
+          </div>
+          <div>
+            <input type="radio" name="order-option" id="delivery" />
+            <label for="delivery" style="margin-left: 0.5rem">Delivery</label>
+          </div>
+        </div>
+        <div class="address">
+          <input type="text" id="address" placeholder="Enter your address" />
+          <p class="note">
+            <span style="font-weight: 600">Please note:</span> A delivery
+            surcharge applies to all orders outside of Cordova. The surcharge is
+            calculated at ₱20.00 per kilometer from the town limits to your
+            delivery address. You can pay the total surcharge upon delivery.
+          </p>
+        </div>
+        <button id="place-order-btn">Place Order</button>
+      </div>
     </div>
 
     <!-- cart -->
@@ -141,9 +186,12 @@
         <img src="./assets/menu/x.png" alt="exit cart button" width="40px" />
       </button>
       <div class="cart-container"></div>
-      <button id="checkout-btn">Checkout</button>
+      <button id="checkout-btn" onclick="checkOut()">Checkout</button>
       <p id="empty-cart">Empty Cart!</p>
     </div>
+
+    <!-- checkout -->
+
     <script src="./preload.js"></script>
     <script src="./menu.js"></script>
   </body>
