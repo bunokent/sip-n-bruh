@@ -111,6 +111,8 @@ exitOrderBtn.addEventListener("click", function () {
     document.getElementById("first-process").classList.add("fade-out");
     orderOverlay.style.opacity = "0";
     orderOverlay.style.pointerEvents = "none";
+
+    document.getElementById("order-quantity").value = 1;
     addOns.forEach((addOn) => {
       addOn.checked = false;
     });
@@ -139,8 +141,8 @@ function hideCart() {
 
 let cartItems = 0;
 
-const orders = {};
-const ids = [];
+let orders = {};
+let ids = [];
 
 function generateId() {
   let randomNumber;
@@ -154,9 +156,8 @@ function generateId() {
 }
 
 const addToCartBtn = document.getElementById("add-to-cart-btn");
+const cartContainer = document.querySelector(".cart-container");
 addToCartBtn.addEventListener("click", function () {
-  const cartContainer = document.querySelector(".cart-container");
-
   let isAddOnEmpty = true;
   let selectedAddOn = "";
   for (let i = 0; i < addOns.length; i++) {
@@ -173,7 +174,7 @@ addToCartBtn.addEventListener("click", function () {
     errorMessage.classList.remove("show-error");
     cartItems++;
     document.querySelector("#checkout-btn").classList.add("show");
-    document.querySelector("#empty-cart").classList.add("hide");
+    document.querySelector(".empty-cart-container").classList.add("hide");
     document.querySelector(".cart-count p").textContent = cartItems;
 
     const flavor = flavors[currentFlavor - 1];
@@ -213,7 +214,9 @@ addToCartBtn.addEventListener("click", function () {
         document.querySelector(".cart-count p").textContent = cartItems;
         if (cartItems == 0) {
           document.querySelector("#checkout-btn").classList.remove("show");
-          document.querySelector("#empty-cart").classList.remove("hide");
+          document
+            .querySelector(".empty-cart-container")
+            .classList.remove("hide");
         }
       });
 
@@ -258,11 +261,13 @@ function exitCheckout() {
   orderOverlay.style.opacity = "0";
   orderOverlay.style.pointerEvents = "none";
   checkoutContainer.innerHTML = "";
+  total = 0;
 }
 
 function placeOrder() {
   const payment = document.getElementById("payment");
   const orderOptions = document.getElementsByName("order-option");
+  isOrderOptionDelivery = false;
 
   document.querySelector("p.payment-error").classList.remove("show");
   document.querySelector("p.empty-payment").classList.remove("show");
@@ -277,7 +282,6 @@ function placeOrder() {
       document.querySelector("p.payment-error").classList.add("show");
     } else {
       isOrderOptionEmpty = true;
-      isOrderOptionDelivery = false;
       orderOptions.forEach((option) => {
         if (option.checked) {
           if (option.id === "delivery") isOrderOptionDelivery = true;
@@ -301,4 +305,78 @@ function placeOrder() {
   }
 
   if (hasError) document.getElementById("checkout-process").scrollTop = 0;
+  else {
+    change = payment.value - total;
+    document.querySelector(".total-text").textContent = `₱ ${total}`;
+    document.querySelector(".payment-text").textContent = `₱ ${payment.value}`;
+    document.querySelector(".change-text").textContent = `₱ ${change}`;
+    payment.value = "";
+
+    if (isOrderOptionDelivery) {
+      document.querySelector(".change-text").textContent = `₱ ${change}`;
+      document.querySelector(".address-text").textContent = address.value;
+      document.querySelector(".address-container").classList.add("show");
+    } else {
+      document.querySelector(".address-container").classList.remove("show");
+    }
+
+    document.getElementById("checkout-process").classList.remove("show");
+    document.getElementById("payment-success").classList.add("show");
+  }
+}
+
+function formatDate(date) {
+  const months = [
+    "Jan.",
+    "Feb.",
+    "Mar.",
+    "Apr.",
+    "May",
+    "Jun.",
+    "Jul.",
+    "Aug.",
+    "Sep.",
+    "Oct.",
+    "Nov.",
+    "Dec.",
+  ];
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  const ampm = hours >= 12 ? " PM" : " AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  const minutesStr = minutes < 10 ? "0" + minutes : minutes;
+
+  const formattedDate = `${month} ${day}, ${year}`;
+  const formattedTime = `${hours}:${minutesStr}${ampm}`;
+
+  return { formattedDate, formattedTime };
+}
+
+const now = new Date();
+const { formattedDate, formattedTime } = formatDate(now);
+
+const dateElement = document.getElementById("date");
+const timeElement = document.getElementById("time");
+
+dateElement.textContent = formattedDate;
+timeElement.textContent = formattedTime;
+
+function exitPaymentSuccess() {
+  document.getElementById("payment-success").classList.remove("show");
+  orderOverlay.style.opacity = "0";
+  orderOverlay.style.pointerEvents = "none";
+  cartContainer.innerHTML = "";
+  document.querySelector("#checkout-btn").classList.remove("show");
+  document.querySelector(".empty-cart-container").classList.remove("hide");
+  orders = {};
+  ids = [];
+  cartItems = 0;
+  total = 0;
+  document.querySelector(".cart-count p").textContent = cartItems;
+  checkoutContainer.innerHTML = "";
 }
