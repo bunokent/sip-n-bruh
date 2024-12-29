@@ -284,7 +284,7 @@ label:not([for="sugar-level"]) {
   margin-bottom: 2rem;
   align-items: center;
   justify-content: flex-end;
-  gap: 6rem;
+  gap: 5rem;
 }
 
 #checkout-process h3 {
@@ -339,4 +339,26 @@ p.note {
 
 .address {
   display: none;
+}
+
+p.payment-error,
+p.empty-payment,
+p.order-option-error,
+p.address-error {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 0.9rem;
+  color: red;
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
+
+p.payment-error.show,
+p.empty-payment.show,
+p.order-option-error.show,
+p.address-error.show {
+  opacity: 1;
 }

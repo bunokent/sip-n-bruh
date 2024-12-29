@@ -141,6 +141,10 @@
             <img src="./assets/menu/x.png" alt="exit button" width="40px" />
           </button>
         </div>
+        <p class="empty-payment">Please enter your payment</p>
+        <p class="payment-error">Not enough payment</p>
+        <p class="order-option-error">Please select an order option</p>
+        <p class="address-error">Please input your address</p>
         <p>Order Details</p>
         <div>
           <div class="checkout-container"></div>
@@ -151,6 +155,7 @@
           </div>
         </div>
         <input
+          id="payment"
           type="number"
           min="1"
           placeholder="Enter your Payment"
@@ -176,7 +181,7 @@
             delivery address. You can pay the total surcharge upon delivery.
           </p>
         </div>
-        <button id="place-order-btn">Place Order</button>
+        <button id="place-order-btn" onclick="placeOrder()">Place Order</button>
       </div>
     </div>
 

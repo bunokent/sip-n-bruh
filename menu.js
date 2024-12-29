@@ -221,12 +221,12 @@ addToCartBtn.addEventListener("click", function () {
   }
 });
 
+let total = 0;
 const checkoutContainer = document.querySelector(".checkout-container");
 function checkOut() {
   document.getElementById("checkout-process").classList.add("show");
   orderOverlay.style.opacity = "1";
   orderOverlay.style.pointerEvents = "auto";
-  let total = 0;
   const totalPrice = document.querySelector(".total-price");
   Object.values(orders).forEach((order) => {
     const checkoutItem = document.createElement("div");
@@ -258,4 +258,47 @@ function exitCheckout() {
   orderOverlay.style.opacity = "0";
   orderOverlay.style.pointerEvents = "none";
   checkoutContainer.innerHTML = "";
+}
+
+function placeOrder() {
+  const payment = document.getElementById("payment");
+  const orderOptions = document.getElementsByName("order-option");
+
+  document.querySelector("p.payment-error").classList.remove("show");
+  document.querySelector("p.empty-payment").classList.remove("show");
+  document.querySelector("p.order-option-error").classList.remove("show");
+  document.querySelector("p.address-error").classList.remove("show");
+  hasError = true;
+  if (payment.value === "") {
+    console.log("empty bitch");
+    document.querySelector("p.empty-payment").classList.add("show");
+  } else {
+    if (payment.value < total) {
+      document.querySelector("p.payment-error").classList.add("show");
+    } else {
+      isOrderOptionEmpty = true;
+      isOrderOptionDelivery = false;
+      orderOptions.forEach((option) => {
+        if (option.checked) {
+          if (option.id === "delivery") isOrderOptionDelivery = true;
+          isOrderOptionEmpty = false;
+        }
+      });
+
+      if (isOrderOptionEmpty) {
+        document.querySelector(".order-option-error").classList.add("show");
+      } else {
+        if (isOrderOptionDelivery) {
+          if (document.getElementById("address").value === "") {
+            document.querySelector("p.address-error").classList.add("show");
+          } else {
+            console.log("no error");
+            hasError = false;
+          }
+        } else hasError = false;
+      }
+    }
+  }
+
+  if (hasError) document.getElementById("checkout-process").scrollTop = 0;
 }
