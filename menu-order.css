@@ -406,19 +406,21 @@ p.address-error.show {
 }
 
 #payment-success > p,
-.address-container p:first-of-type {
+.address-text-container p:first-of-type {
   font-weight: 600;
 }
 
-.address-container p:last-of-type {
+.address-text-container p:last-of-type {
   padding-left: 2rem;
 }
 
-.address-container {
+.address-input-container,
+.address-text-container {
   display: none;
 }
 
-.address-container.show {
+.address-input-container.show,
+.address-text-container.show {
   display: block;
 }
 

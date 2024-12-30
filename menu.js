@@ -97,14 +97,12 @@ const addOns = document.getElementsByName("add-on");
 const orderOptions = document.getElementsByName("order-option");
 
 orderOptions.forEach((option) => {
-  const address = document.querySelector(".address");
+  const address = document.querySelector(".address-input-container");
   option.addEventListener("click", function () {
     if (this.id === "delivery") {
-      address.style.display = "block";
-      address.style.pointerEvents = "auto";
+      address.classList.add("show");
     } else {
-      address.style.display = "none";
-      address.style.pointerEvents = "none";
+      address.classList.remove("show");
     }
   });
 });
@@ -334,9 +332,11 @@ function placeOrder() {
     if (isOrderOptionDelivery) {
       document.querySelector(".change-text").textContent = `₱ ${change}`;
       document.querySelector(".address-text").textContent = address.value;
-      document.querySelector(".address-container").classList.add("show");
+      document.querySelector(".address-text-container").classList.add("show");
     } else {
-      document.querySelector(".address-container").classList.remove("show");
+      document
+        .querySelector(".address-text-container")
+        .classList.remove("show");
     }
 
     document.getElementById("checkout-first-process").classList.remove("show");
@@ -389,6 +389,7 @@ function exitPaymentSuccess() {
   document.getElementById("checkout-process").classList.remove("show");
 
   setTimeout(() => {
+    document.querySelector(".address-input-container").classList.remove("show");
     document.getElementById("payment-success").classList.remove("show");
     orderOverlay.style.opacity = "0";
     orderOverlay.style.pointerEvents = "none";
