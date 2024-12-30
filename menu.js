@@ -338,6 +338,15 @@ function placeOrder() {
 
     document.getElementById("checkout-process").classList.remove("show");
     document.getElementById("payment-success").classList.add("show");
+
+    const now = new Date();
+    const { formattedDate, formattedTime } = formatDate(now);
+
+    const dateElement = document.getElementById("date");
+    const timeElement = document.getElementById("time");
+
+    dateElement.textContent = formattedDate;
+    timeElement.textContent = formattedTime;
   }
 }
 
@@ -372,15 +381,6 @@ function formatDate(date) {
 
   return { formattedDate, formattedTime };
 }
-
-const now = new Date();
-const { formattedDate, formattedTime } = formatDate(now);
-
-const dateElement = document.getElementById("date");
-const timeElement = document.getElementById("time");
-
-dateElement.textContent = formattedDate;
-timeElement.textContent = formattedTime;
 
 function exitPaymentSuccess() {
   document.getElementById("payment-success").classList.remove("show");
