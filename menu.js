@@ -28,6 +28,22 @@ const descriptions = [
 
 let currentFlavor = 1;
 
+const flavorSelect = document.getElementById("flavor-select");
+
+flavors.forEach((flavor, index) => {
+  const option = document.createElement("option");
+  option.value = index + 1;
+  option.textContent = flavor;
+  flavorSelect.appendChild(option);
+});
+
+flavorSelect.addEventListener("change", function () {
+  document.getElementById(
+    "order-img"
+  ).src = `./assets/menu/coffee${flavorSelect.value}-crop.png`;
+  console.log("change");
+});
+
 prevBtn.addEventListener("click", function () {
   topOverlay.classList.add("fade-in");
   bottomOverlay.classList.add("fade-in");
@@ -94,7 +110,7 @@ orderOptions.forEach((option) => {
 });
 
 orderBtn.addEventListener("click", function () {
-  document.getElementById("order-flavor").textContent = titleEl.textContent;
+  flavorSelect.value = currentFlavor;
   document.getElementById(
     "order-img"
   ).src = `./assets/menu/coffee${currentFlavor}-crop.png`;
@@ -177,7 +193,7 @@ addToCartBtn.addEventListener("click", function () {
     document.querySelector(".empty-cart-container").classList.add("hide");
     document.querySelector(".cart-count p").textContent = cartItems;
 
-    const flavor = flavors[currentFlavor - 1];
+    const flavor = flavors[flavorSelect.value - 1];
     const quantity = document.getElementById("order-quantity").value;
     const sugarLevel = sugarLevelEl.value;
 
@@ -190,7 +206,7 @@ addToCartBtn.addEventListener("click", function () {
     cartItem.classList.add("cart");
     cartItem.innerHTML = `
       <div class="title">
-        <img src="./assets/menu/coffee${currentFlavor}-crop.png" alt="coffee flavor" width="100px" style="border-radius: 50%" />
+        <img src="./assets/menu/coffee${flavorSelect.value}-crop.png" alt="coffee flavor" width="100px" style="border-radius: 50%" />
         <p>${flavor}</p>
       </div>
       <div class="cart-description">

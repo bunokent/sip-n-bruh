@@ -94,10 +94,16 @@ label {
   transform: rotate(90deg);
 }
 
-#order-flavor {
-  font-family: "Playfair Display", serif;
-  font-size: 1.2rem;
-  font-weight: 700;
+#flavor-select {
+  padding: 0.5rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #9c6c4a;
+  cursor: pointer;
+}
+
+#flavor-select option {
+  font-size: 0.8rem;
+  cursor: pointer;
 }
 
 .order-overlay button {
@@ -143,7 +149,6 @@ label:not([for="sugar-level"]) {
   opacity: 1;
 }
 
-/* initial state for other process */
 .hide {
   display: none;
   pointer-events: none;
