@@ -133,99 +133,102 @@
           Please fill out all required fields.
         </p>
       </div>
-      <!-- checkout process -->
       <div id="checkout-process">
-        <div>
-          <h3>Checkout</h3>
-          <button id="exit-checkout" onclick="exitCheckout()">
-            <img src="./assets/menu/x.png" alt="exit button" width="40px" />
+        <!-- checkout process -->
+        <div id="checkout-first-process">
+          <div>
+            <h3>Checkout</h3>
+            <button id="exit-checkout" onclick="exitCheckout()">
+              <img src="./assets/menu/x.png" alt="exit button" width="40px" />
+            </button>
+          </div>
+          <p class="empty-payment">Please enter your payment</p>
+          <p class="payment-error">Not enough payment</p>
+          <p class="order-option-error">Please select an order option</p>
+          <p class="address-error">Please input your address</p>
+          <p>Order Details</p>
+          <div>
+            <div class="checkout-container"></div>
+            <hr />
+            <div>
+              <p>TOTAL</p>
+              <p class="total-price">10</p>
+            </div>
+          </div>
+          <input
+            id="payment"
+            type="number"
+            min="1"
+            placeholder="Enter your Payment"
+            style="margin-top: 1.5rem; padding: 1rem"
+          />
+          <p>Order Options</p>
+          <div class="order-options-container">
+            <div>
+              <input type="radio" name="order-option" id="pick-up" />
+              <label for="pick-up" style="margin-left: 0.2rem">Pick Up</label>
+            </div>
+            <div>
+              <input type="radio" name="order-option" id="delivery" />
+              <label for="delivery" style="margin-left: 0.5rem">Delivery</label>
+            </div>
+          </div>
+          <div class="address">
+            <input type="text" id="address" placeholder="Enter your address" />
+            <p class="note">
+              <span style="font-weight: 600">Please note:</span> A delivery
+              surcharge applies to all orders outside of Cordova. The surcharge
+              is calculated at ₱20.00 per kilometer from the town limits to your
+              delivery address. You can pay the total surcharge upon delivery.
+            </p>
+          </div>
+          <button id="place-order-btn" onclick="placeOrder()">
+            Place Order
           </button>
         </div>
-        <p class="empty-payment">Please enter your payment</p>
-        <p class="payment-error">Not enough payment</p>
-        <p class="order-option-error">Please select an order option</p>
-        <p class="address-error">Please input your address</p>
-        <p>Order Details</p>
-        <div>
-          <div class="checkout-container"></div>
-          <hr />
+        <!-- payment successful -->
+        <div id="payment-success">
+          <h3>Payment successful</h3>
+          <p>Payment Details</p>
           <div>
-            <p>TOTAL</p>
-            <p class="total-price">10</p>
+            <div>
+              <p>TOTAL</p>
+              <p class="total-text">90</p>
+            </div>
+            <div>
+              <p>PAYMENT</p>
+              <p class="payment-text">100</p>
+            </div>
+            <hr />
+            <div>
+              <p>CHANGE</p>
+              <p class="change-text">10</p>
+            </div>
           </div>
-        </div>
-        <input
-          id="payment"
-          type="number"
-          min="1"
-          placeholder="Enter your Payment"
-          style="margin-top: 1.5rem; padding: 1rem"
-        />
-        <p>Order Options</p>
-        <div class="order-options-container">
-          <div>
-            <input type="radio" name="order-option" id="pick-up" />
-            <label for="pick-up" style="margin-left: 0.2rem">Pick Up</label>
+          <div class="address-container">
+            <p>Delivery Address</p>
+            <p class="address-text">San Agustin Talibon, Bohol</p>
           </div>
           <div>
-            <input type="radio" name="order-option" id="delivery" />
-            <label for="delivery" style="margin-left: 0.5rem">Delivery</label>
+            <img
+              src="./assets/menu/success.png"
+              alt="success icon"
+              width="150px"
+              style="padding-block: 0.4rem"
+            />
+            <div class="date-time-container">
+              <p id="date"></p>
+              <p id="time"></p>
+            </div>
+            <p class="gratitude-note">
+              Thank you for your order! Please take a screenshot of this page as
+              your proof of purchase. Sip with us again, Bruh! 😉
+            </p>
           </div>
+          <button id="payment-success-btn" onclick="exitPaymentSuccess()">
+            OK
+          </button>
         </div>
-        <div class="address">
-          <input type="text" id="address" placeholder="Enter your address" />
-          <p class="note">
-            <span style="font-weight: 600">Please note:</span> A delivery
-            surcharge applies to all orders outside of Cordova. The surcharge is
-            calculated at ₱20.00 per kilometer from the town limits to your
-            delivery address. You can pay the total surcharge upon delivery.
-          </p>
-        </div>
-        <button id="place-order-btn" onclick="placeOrder()">Place Order</button>
-      </div>
-
-      <!-- payment successful -->
-      <div id="payment-success">
-        <h3>Payment successful</h3>
-        <p>Payment Details</p>
-        <div>
-          <div>
-            <p>TOTAL</p>
-            <p class="total-text">90</p>
-          </div>
-          <div>
-            <p>PAYMENT</p>
-            <p class="payment-text">100</p>
-          </div>
-          <hr />
-          <div>
-            <p>CHANGE</p>
-            <p class="change-text">10</p>
-          </div>
-        </div>
-        <div class="address-container">
-          <p>Delivery Address</p>
-          <p class="address-text">San Agustin Talibon, Bohol</p>
-        </div>
-        <div>
-          <img
-            src="./assets/menu/success.png"
-            alt="success icon"
-            width="150px"
-            style="padding-block: 0.4rem"
-          />
-          <div class="date-time-container">
-            <p id="date"></p>
-            <p id="time"></p>
-          </div>
-          <p class="gratitude-note">
-            Thank you for your order! Please take a screenshot of this page as
-            your proof of purchase. Sip with us again, Bruh! 😉
-          </p>
-        </div>
-        <button id="payment-success-btn" onclick="exitPaymentSuccess()">
-          OK
-        </button>
       </div>
     </div>
 

@@ -243,6 +243,7 @@ addToCartBtn.addEventListener("click", function () {
 let total = 0;
 const checkoutContainer = document.querySelector(".checkout-container");
 function checkOut() {
+  document.getElementById("checkout-first-process").classList.add("show");
   document.getElementById("checkout-process").classList.add("show");
   orderOverlay.style.opacity = "1";
   orderOverlay.style.pointerEvents = "auto";
@@ -274,10 +275,12 @@ function checkOut() {
 
 function exitCheckout() {
   document.getElementById("checkout-process").classList.remove("show");
-  orderOverlay.style.opacity = "0";
-  orderOverlay.style.pointerEvents = "none";
-  checkoutContainer.innerHTML = "";
-  total = 0;
+  setTimeout(() => {
+    orderOverlay.style.opacity = "0";
+    orderOverlay.style.pointerEvents = "none";
+    checkoutContainer.innerHTML = "";
+    total = 0;
+  }, 500);
 }
 
 function placeOrder() {
@@ -336,7 +339,7 @@ function placeOrder() {
       document.querySelector(".address-container").classList.remove("show");
     }
 
-    document.getElementById("checkout-process").classList.remove("show");
+    document.getElementById("checkout-first-process").classList.remove("show");
     document.getElementById("payment-success").classList.add("show");
 
     const now = new Date();
@@ -383,16 +386,20 @@ function formatDate(date) {
 }
 
 function exitPaymentSuccess() {
-  document.getElementById("payment-success").classList.remove("show");
-  orderOverlay.style.opacity = "0";
-  orderOverlay.style.pointerEvents = "none";
-  cartContainer.innerHTML = "";
-  document.querySelector("#checkout-btn").classList.remove("show");
-  document.querySelector(".empty-cart-container").classList.remove("hide");
-  orders = {};
-  ids = [];
-  cartItems = 0;
-  total = 0;
-  document.querySelector(".cart-count p").textContent = cartItems;
-  checkoutContainer.innerHTML = "";
+  document.getElementById("checkout-process").classList.remove("show");
+
+  setTimeout(() => {
+    document.getElementById("payment-success").classList.remove("show");
+    orderOverlay.style.opacity = "0";
+    orderOverlay.style.pointerEvents = "none";
+    cartContainer.innerHTML = "";
+    document.querySelector("#checkout-btn").classList.remove("show");
+    document.querySelector(".empty-cart-container").classList.remove("hide");
+    orders = {};
+    ids = [];
+    cartItems = 0;
+    total = 0;
+    document.querySelector(".cart-count p").textContent = cartItems;
+    checkoutContainer.innerHTML = "";
+  }, 500);
 }
