@@ -81,7 +81,7 @@ main section:first-of-type > img {
 }
 
 main section:last-of-type {
-  padding: 15rem 5rem;
+  padding: 12rem 5rem 0rem 5rem;
 }
 
 section:last-of-type > div {

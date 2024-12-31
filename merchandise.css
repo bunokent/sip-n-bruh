@@ -20,8 +20,8 @@ main section:last-of-type {
 }
 
 .btn-container {
-  bottom: 10%;
-  transform: translate(-50%, -10%);
+  bottom: 0;
+  transform: translate(-50%, -0%);
   margin-right: 5rem;
 }
 
