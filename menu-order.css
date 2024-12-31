@@ -94,7 +94,8 @@ label {
   transform: rotate(90deg);
 }
 
-#flavor-select {
+#flavor-select,
+#merchandise-select {
   padding: 0.5rem 0.8rem;
   font-size: 1rem;
   border: 1px solid #9c6c4a;

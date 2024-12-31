@@ -1,0 +1,53 @@
+main {
+  flex-direction: row-reverse;
+}
+
+header {
+  left: 0;
+  z-index: 1;
+}
+
+nav ul {
+  justify-content: left;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+main section:last-of-type {
+  position: relative;
+}
+
+.btn-container {
+  bottom: 10%;
+  transform: translate(-50%, -10%);
+  margin-right: 5rem;
+}
+
+/* order-process */
+#first-process div:first-of-type {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#first-process div:first-of-type > img {
+  border-radius: 0;
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 1rem black;
+}
+
+#exit-order {
+  position: absolute;
+  right: 6%;
+  top: 5%;
+}
+
+/* order-cart */
+.side-cart {
+  z-index: 1;
+}

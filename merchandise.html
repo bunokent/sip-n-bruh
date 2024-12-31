@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="menu-intro.css" />
     <link rel="stylesheet" href="menu.css" />
     <link rel="stylesheet" href="menu-order.css" />
+    <link rel="stylesheet" href="merchandise.css" />
     <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
   </head>
   <body>
@@ -28,8 +29,8 @@
       <nav>
         <ul>
           <li><a href="./index.html">Home</a></li>
-          <li class="active"><a href="./menu.html">Menu</a></li>
-          <li><a href="./merchandise.html">Merchandise</a></li>
+          <li><a href="./menu.html">Menu</a></li>
+          <li class="active"><a href="./merchandise.html">Merchandise</a></li>
           <li><a href="./about.html">About</a></li>
           <div class="cart-btn-container">
             <button id="cart" onclick="showCart()">
@@ -53,34 +54,35 @@
           <img src="./assets/lower-part.png" aria-hidden="true" />
         </div>
         <img
-          src="./assets/menu/coffee1.png"
-          alt="coffee flavor image"
-          id="coffee"
+          src="./assets/merchandise/merchandise1.png"
+          alt="merchandise image"
+          id="merchandise"
         />
       </section>
       <section>
         <div>
-          <p id="current-flavor">01</p>
+          <p id="current-merchandise">01</p>
           <div class="line"></div>
           <p>06</p>
         </div>
-        <h1>Cookies & Cream</h1>
+        <h1>BruhGutchi Hoodie</h1>
         <p id="description">
-          Delight in the vibrant sweetness of strawberries mixed with velvety
-          milk. A fruity and refreshing treat with reduced sugar!
+          Wrap yourself in cozy vibes with our coffee-themed hoodie! Designed
+          for caffeine enthusiasts, it features a sleek, stylish print that
+          celebrates your love for coffee. Perfect for chilly mornings or
+          lounging with your favorite brew
         </p>
         <button id="order-btn">order now</button>
+        <div class="btn-container">
+          <button id="prev">
+            <img src="assets/menu/prev.png" alt="previous merchandise" />
+          </button>
+          <button id="next">
+            <img src="./assets/menu/next.png" alt="next merchandise" />
+          </button>
+        </div>
       </section>
     </main>
-    <div class="btn-container">
-      <button id="prev">
-        <img src="assets/menu/prev.png" alt="previous flavor" />
-      </button>
-      <button id="next">
-        <img src="./assets/menu/next.png" alt="next flavor" />
-      </button>
-    </div>
-
     <!-- order-process -->
 
     <div class="order-overlay">
@@ -90,10 +92,10 @@
           <div>
             <img
               id="order-img"
-              src="./assets/menu/coffee1-crop.png"
-              alt="coffee flavor"
+              src="./assets/merchandise/merchandise1-crop.jpg"
+              alt="merchandise"
             />
-            <select id="flavor-select"></select>
+            <select id="merchandise-select"></select>
           </div>
           <button id="exit-order" class="exit">
             <img src="./assets/menu/x.png" alt="exit button" width="30px" />
@@ -101,37 +103,7 @@
         </div>
         <p>Quantity</p>
         <input type="number" min="1" value="1" id="order-quantity" />
-        <p>Sugar Level</p>
-        <div>
-          <input
-            name="sugar-level"
-            type="range"
-            step="10"
-            min="0"
-            max="100"
-            value="50"
-          />
-          <label for="sugar-level">50%</label>
-        </div>
-        <p>Add-ons</p>
-        <div class="add-ons-container">
-          <div>
-            <input type="radio" name="add-on" id="vanilla" />
-            <label for="vanilla">Vanilla</label>
-          </div>
-          <div>
-            <input type="radio" name="add-on" id="caramel" />
-            <label for="caramel">Caramel</label>
-          </div>
-          <div>
-            <input type="radio" name="add-on" id="hazelnut" />
-            <label for="hazelnut">Hazelnut</label>
-          </div>
-        </div>
         <button id="add-to-cart-btn">Add to Cart</button>
-        <p class="empty-error hide-error">
-          Please fill out all required fields.
-        </p>
       </div>
       <div id="checkout-process">
         <!-- checkout process -->
@@ -250,6 +222,6 @@
     </div>
 
     <script src="./preload.js"></script>
-    <script src="./menu.js"></script>
+    <script src="./merchandise.js"></script>
   </body>
 </html>

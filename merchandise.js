@@ -1,46 +1,46 @@
 const prevBtn = document.querySelector("#prev");
 const nextBtn = document.querySelector("#next");
-const currentEl = document.querySelector("#current-flavor");
+const currentEl = document.querySelector("#current-merchandise");
 const titleEl = document.querySelector("h1");
 const descriptionEl = document.getElementById("description");
-const coffeeImg = document.querySelector("#coffee");
+const merchandiseImg = document.querySelector("#merchandise");
 const topOverlay = document.querySelector(".top-overlay");
 const bottomOverlay = document.querySelector(".bottom-overlay");
 const errorMessage = document.querySelector(".empty-error");
 
-const flavors = [
-  "Cookies & Cream",
-  "Iced Matcha Coffee",
-  "Ice Caramel Coffee",
-  "Iced Chocolate Coffee",
-  "Iced Coffee Latte",
-  "Strawberry Latte",
-];
+const merchandises = {
+  1: ["BruhGutchi Hoodie", 699],
+  2: ["BruhGutchi Shirt", 499],
+  3: ["BruhGutchi Apron", 399],
+  4: ["BruhGutchi Tote Bag", 399],
+  5: ["BruhGutchi Cap", 299],
+  6: ["BruhGutchi Mug", 269],
+};
 
 const descriptions = [
-  "Indulge in the rich, creamy taste of cookies blended with milk and topped with chocolate crumble. A perfect balance of sweetness with less sugar!",
-  "Experience the earthy flavor of premium matcha paired with the smoothness of coffee. A refreshing drink with reduced sugar for guilt-free enjoyment!",
-  "Delight in the luscious caramel swirls combined with velvety coffee. Sweet yet balanced, it’s your treat with less sugar.",
-  "Enjoy the decadent richness of chocolate fused with the boldness of coffee. A chocolaty indulgence with a healthier twist of less sugar!",
-  "Relish the bold, aromatic taste of freshly brewed coffee blended with creamy milk. A smooth and energizing drink with less sugar!",
-  "Delight in the vibrant sweetness of strawberries mixed with velvety milk. A fruity and refreshing treat with reduced sugar!",
+  "Wrap yourself in cozy vibes with our coffee-themed hoodie! Designed for caffeine enthusiasts, it features a sleek, stylish print that celebrates your love for coffee. Perfect for chilly mornings or lounging with your favorite brew",
+  "Get your day started with this fuel-meets-passion combo tee! If you are a passionate coffee lover, this shirt will be able to reflect your hobby with its minimalist design and a cozy fit. This shirt makes a perfect union of style and comfort!",
+  "Serve up style with our coffee-themed apron! Crafted for coffee lovers and kitchen maestros alike, this durable apron features a chic design that keeps you looking cool while protecting against spills. Perfect for brewing, baking, or barista dreams",
+  "Carry your caffeine passion wherever you go with our coffee-inspired tote bag! Featuring a stylish design and spacious interior, this eco-friendly bag is perfect for coffee runs, groceries, or daily essentials. A must-have for every coffee lover on the move!",
+  "Top off your look with our coffee-inspired cap! Featuring a sleek, embroidered design, this adjustable cap is perfect for coffee lovers who want to wear their passion proudly. A stylish and functional accessory for any casual outing",
+  "Give your morning a perfect start with our specialized coffee mug! Perfect for real coffee lovers, this tough crafted polymer mug is modernized to give character to your beverage routine. Designed to let you relish every ounce of your drink in style!",
 ];
 
-let currentFlavor = 1;
+let currentMerchandise = 1;
 
-const flavorSelect = document.getElementById("flavor-select");
+const merchandiseSelect = document.getElementById("merchandise-select");
 
-flavors.forEach((flavor, index) => {
+for (const key in merchandises) {
   const option = document.createElement("option");
-  option.value = index + 1;
-  option.textContent = flavor;
-  flavorSelect.appendChild(option);
-});
+  option.value = key;
+  option.textContent = merchandises[key][0];
+  merchandiseSelect.appendChild(option);
+}
 
-flavorSelect.addEventListener("change", function () {
+merchandiseSelect.addEventListener("change", function () {
   document.getElementById(
     "order-img"
-  ).src = `./assets/menu/coffee${flavorSelect.value}-crop.png`;
+  ).src = `./assets/merchandise/merchandise${merchandiseSelect.value}-crop.jpg`;
   console.log("change");
 });
 
@@ -50,15 +50,16 @@ prevBtn.addEventListener("click", function () {
   titleEl.classList.add("text-fade-out");
   descriptionEl.classList.add("fade-out");
   setTimeout(() => {
-    currentFlavor = currentFlavor != 1 ? (currentFlavor -= 1) : 6;
-    currentEl.textContent = `0${currentFlavor}`;
-    titleEl.textContent = flavors[currentFlavor - 1];
-    coffeeImg.src = `./assets/menu/coffee${currentFlavor}.png`;
+    currentMerchandise =
+      currentMerchandise != 1 ? (currentMerchandise -= 1) : 6;
+    currentEl.textContent = `0${currentMerchandise}`;
+    titleEl.textContent = merchandises[currentMerchandise][0];
+    merchandiseImg.src = `./assets/menu/coffee${currentMerchandise}.png`;
     topOverlay.classList.remove("fade-in");
     bottomOverlay.classList.remove("fade-in");
     titleEl.classList.remove("text-fade-out");
     descriptionEl.classList.remove("fade-out");
-    descriptionEl.textContent = descriptions[currentFlavor - 1];
+    descriptionEl.textContent = descriptions[currentMerchandise - 1];
   }, 875);
 });
 
@@ -68,13 +69,14 @@ nextBtn.addEventListener("click", function () {
   titleEl.classList.add("text-fade-out");
   descriptionEl.classList.add("fade-out");
   setTimeout(() => {
-    currentFlavor = currentFlavor != 6 ? (currentFlavor += 1) : 1;
-    currentEl.textContent = `0${currentFlavor}`;
-    titleEl.textContent = flavors[currentFlavor - 1];
-    coffeeImg.src = `./assets/menu/coffee${currentFlavor}.png`;
+    currentMerchandise =
+      currentMerchandise != 6 ? (currentMerchandise += 1) : 1;
+    currentEl.textContent = `0${currentMerchandise}`;
+    titleEl.textContent = merchandises[currentMerchandise][0];
+    merchandiseImg.src = `./assets/merchandise/merchandise${currentMerchandise}.png`;
     topOverlay.classList.remove("fade-in");
     bottomOverlay.classList.remove("fade-in");
-    descriptionEl.textContent = descriptions[currentFlavor - 1];
+    descriptionEl.textContent = descriptions[currentMerchandise - 1];
     descriptionEl.classList.remove("fade-out");
     titleEl.classList.remove("text-fade-out");
   }, 875);
@@ -90,8 +92,6 @@ window.addEventListener("load", function () {
 const orderBtn = document.getElementById("order-btn");
 const exitOrderBtn = document.getElementById("exit-order");
 const orderOverlay = document.querySelector(".order-overlay");
-const sugarLevelEl = document.querySelector('input[type="range"]');
-const addOns = document.getElementsByName("add-on");
 const orderOptions = document.getElementsByName("order-option");
 
 orderOptions.forEach((option) => {
@@ -106,10 +106,10 @@ orderOptions.forEach((option) => {
 });
 
 orderBtn.addEventListener("click", function () {
-  flavorSelect.value = currentFlavor;
+  merchandiseSelect.value = currentMerchandise;
   document.getElementById(
     "order-img"
-  ).src = `./assets/menu/coffee${currentFlavor}-crop.png`;
+  ).src = `./assets/merchandise/merchandise${currentMerchandise}-crop.jpg`;
   document.getElementById("first-process").classList.remove("fade-out");
   orderOverlay.style.opacity = "1";
   orderOverlay.style.pointerEvents = "auto";
@@ -125,22 +125,11 @@ exitOrderBtn.addEventListener("click", function () {
     orderOverlay.style.pointerEvents = "none";
 
     document.getElementById("order-quantity").value = 1;
-    addOns.forEach((addOn) => {
-      addOn.checked = false;
-    });
 
     orderOptions.forEach((option) => {
       option.checked = false;
     });
-
-    sugarLevelEl.value = 50;
-    document.querySelector('label[for="sugar-level"]').textContent = "50%";
   }, 500);
-});
-sugarLevelEl.addEventListener("input", function () {
-  document.querySelector(
-    'label[for="sugar-level"]'
-  ).textContent = `${sugarLevelEl.value}%`;
 });
 
 function showCart() {
@@ -156,59 +145,29 @@ let cartItems = 0;
 let orders = {};
 let ids = [];
 
-function generateId() {
-  let randomNumber;
-  while (true) {
-    randomNumber = Math.trunc(Math.random() * 100) + 1;
-    if (!ids.includes(randomNumber)) break;
-  }
-
-  ids.push(randomNumber);
-  return randomNumber;
-}
-
 const addToCartBtn = document.getElementById("add-to-cart-btn");
 const cartContainer = document.querySelector(".cart-container");
 addToCartBtn.addEventListener("click", function () {
-  let isAddOnEmpty = true;
-  let selectedAddOn = "";
-  for (let i = 0; i < addOns.length; i++) {
-    if (addOns[i].checked) {
-      isAddOnEmpty = false;
-      selectedAddOn = addOns[i].id;
-      break;
-    }
-  }
+  document.querySelector(".empty-cart-container").classList.add("hide");
+  document.querySelector("#checkout-btn").classList.add("show");
+  const quantity = parseInt(document.getElementById("order-quantity").value);
 
-  if (isAddOnEmpty) {
-    errorMessage.classList.add("show-error");
-  } else {
-    errorMessage.classList.remove("show-error");
+  if (orders[merchandiseSelect.value] === undefined) {
     cartItems++;
-    document.querySelector("#checkout-btn").classList.add("show");
-    document.querySelector(".empty-cart-container").classList.add("hide");
     document.querySelector(".cart-count p").textContent = cartItems;
 
-    const flavor = flavors[flavorSelect.value - 1];
-    const quantity = document.getElementById("order-quantity").value;
-    const sugarLevel = sugarLevelEl.value;
-
-    const details = [flavor, quantity, sugarLevel, selectedAddOn];
-    const id = generateId();
-    orders[id] = details;
-    console.log(orders);
+    const merchandise = merchandises[merchandiseSelect.value][0];
+    orders[merchandiseSelect.value] = quantity;
 
     const cartItem = document.createElement("div");
     cartItem.classList.add("cart");
     cartItem.innerHTML = `
       <div class="title">
-        <img src="./assets/menu/coffee${flavorSelect.value}-crop.png" alt="coffee flavor" width="100px" style="border-radius: 50%" />
-        <p>${flavor}</p>
+        <img src="./assets/merchandise/merchandise${merchandiseSelect.value}-crop.jpg" alt="merchandise" width="100px" style="border-radius: 50%" />
+        <p>${merchandise}</p>
       </div>
       <div class="cart-description">
-        <p>Quantity: <span>${quantity}</span></p>
-        <p>Sugar Level: <span>${sugarLevel}</span></p>
-        <p>Add On: <span>${selectedAddOn}</span></p>
+        <p>Quantity: <span id="cart-${merchandiseSelect.value}">${quantity}</span></p>
       </div>
       <button class="remove-cart" style="margin-top: 0">Remove</button>
     `;
@@ -231,9 +190,13 @@ addToCartBtn.addEventListener("click", function () {
             .classList.remove("hide");
         }
       });
-
-    alert("Item added to cart!");
+  } else {
+    orders[merchandiseSelect.value] += quantity;
+    document.getElementById(`cart-${merchandiseSelect.value}`).textContent =
+      orders[merchandiseSelect.value];
   }
+
+  alert("Item added to cart!");
 });
 
 let total = 0;
@@ -244,29 +207,30 @@ function checkOut() {
   orderOverlay.style.opacity = "1";
   orderOverlay.style.pointerEvents = "auto";
   const totalPrice = document.querySelector(".total-price");
-  Object.values(orders).forEach((order) => {
+  for (const key in orders) {
     const checkoutItem = document.createElement("div");
-    let flavor = order[0];
-    let quantity = order[1];
-    let sugarLevel = order[2];
-    let addOn = order[3];
-    total += quantity * 45;
-
+    let merchandise = merchandises[key][0];
+    let quantity = orders[key];
+    total += quantity * merchandises[key][1];
+    price = quantity * merchandises[key][1];
     checkoutItem.innerHTML = `
     <div>
-      <p>${flavor} ${quantity}pc/s</p>
-      <p>₱ ${quantity * 45}.00</p>
+      <p>${merchandise} ${quantity}pc/s</p>
+      <p>₱ ${price.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}</p>
     </div>
-    <ul>
-      <li>Sugar Level - ${sugarLevel}%</li>
-      <li>Add On - ${addOn}</li>
     </ul>
   `;
 
     checkoutContainer.appendChild(checkoutItem);
-  });
+  }
 
-  totalPrice.textContent = `₱ ${total}.00`;
+  totalPrice.textContent = `₱ ${total.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
 }
 
 function exitCheckout() {
@@ -290,7 +254,6 @@ function placeOrder() {
   document.querySelector("p.address-error").classList.remove("show");
   hasError = true;
   if (payment.value === "") {
-    console.log("empty bitch");
     document.querySelector("p.empty-payment").classList.add("show");
   } else {
     if (payment.value < total) {
