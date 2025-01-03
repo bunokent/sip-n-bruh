@@ -69,7 +69,7 @@
           Delight in the vibrant sweetness of strawberries mixed with velvety
           milk. A fruity and refreshing treat with reduced sugar!
         </p>
-        <button id="order-btn">order now</button>
+        <button id="order-btn" onclick="order()">order now</button>
       </section>
     </main>
     <div class="btn-container">
@@ -95,7 +95,7 @@
             />
             <select id="flavor-select"></select>
           </div>
-          <button id="exit-order" class="exit">
+          <button id="exit-order" class="exit" onclick="exitOrder()">
             <img src="./assets/menu/x.png" alt="exit button" width="30px" />
           </button>
         </div>
@@ -128,13 +128,14 @@
             <label for="hazelnut">Hazelnut</label>
           </div>
         </div>
-        <button id="add-to-cart-btn">Add to Cart</button>
+        <button id="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
         <p class="empty-error hide-error">
           Please fill out all required fields.
         </p>
       </div>
+
+      <!-- checkout process -->
       <div id="checkout-process">
-        <!-- checkout process -->
         <div id="checkout-first-process">
           <div>
             <h3>Checkout</h3>

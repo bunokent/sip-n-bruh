@@ -41,7 +41,6 @@ flavorSelect.addEventListener("change", function () {
   document.getElementById(
     "order-img"
   ).src = `./assets/menu/coffee${flavorSelect.value}-crop.png`;
-  console.log("change");
 });
 
 prevBtn.addEventListener("click", function () {
@@ -80,6 +79,7 @@ nextBtn.addEventListener("click", function () {
   }, 875);
 });
 
+// intro animation
 window.addEventListener("load", function () {
   const leftOverlay = document.querySelector(".left-overlay");
   const rightOverlay = document.querySelector(".right-overlay");
@@ -87,25 +87,12 @@ window.addEventListener("load", function () {
   rightOverlay.classList.add("fade-out");
 });
 
-const orderBtn = document.getElementById("order-btn");
-const exitOrderBtn = document.getElementById("exit-order");
 const orderOverlay = document.querySelector(".order-overlay");
 const sugarLevelEl = document.querySelector('input[type="range"]');
 const addOns = document.getElementsByName("add-on");
 const orderOptions = document.getElementsByName("order-option");
 
-orderOptions.forEach((option) => {
-  const address = document.querySelector(".address-input-container");
-  option.addEventListener("click", function () {
-    if (this.id === "delivery") {
-      address.classList.add("show");
-    } else {
-      address.classList.remove("show");
-    }
-  });
-});
-
-orderBtn.addEventListener("click", function () {
+function order() {
   flavorSelect.value = currentFlavor;
   document.getElementById(
     "order-img"
@@ -114,9 +101,9 @@ orderBtn.addEventListener("click", function () {
   orderOverlay.style.opacity = "1";
   orderOverlay.style.pointerEvents = "auto";
   document.getElementById("first-process").classList.add("fade-in");
-});
+}
 
-exitOrderBtn.addEventListener("click", function () {
+function exitOrder() {
   document.getElementById("first-process").classList.remove("fade-in");
 
   setTimeout(() => {
@@ -136,7 +123,8 @@ exitOrderBtn.addEventListener("click", function () {
     sugarLevelEl.value = 50;
     document.querySelector('label[for="sugar-level"]').textContent = "50%";
   }, 500);
-});
+}
+
 sugarLevelEl.addEventListener("input", function () {
   document.querySelector(
     'label[for="sugar-level"]'
@@ -152,7 +140,6 @@ function hideCart() {
 }
 
 let cartItems = 0;
-
 let orders = {};
 let ids = [];
 
@@ -185,11 +172,12 @@ function checkExistingOrder(flavor, quantity, sugarLevel, addOn) {
   return false;
 }
 
-const addToCartBtn = document.getElementById("add-to-cart-btn");
 const cartContainer = document.querySelector(".cart-container");
-addToCartBtn.addEventListener("click", function () {
+
+function addToCart() {
   let isAddOnEmpty = true;
   let selectedAddOn = "";
+
   for (let i = 0; i < addOns.length; i++) {
     if (addOns[i].checked) {
       isAddOnEmpty = false;
@@ -198,9 +186,8 @@ addToCartBtn.addEventListener("click", function () {
     }
   }
 
-  if (isAddOnEmpty) {
-    errorMessage.classList.add("show-error");
-  } else {
+  if (isAddOnEmpty) errorMessage.classList.add("show-error");
+  else {
     errorMessage.classList.remove("show-error");
     document.querySelector("#checkout-btn").classList.add("show");
     document.querySelector(".empty-cart-container").classList.add("hide");
@@ -239,7 +226,6 @@ addToCartBtn.addEventListener("click", function () {
           cartContainer.removeChild(cartItem);
           cartItems--;
           delete orders[id];
-          console.log(orders);
 
           document.querySelector(".cart-count p").textContent = cartItems;
           if (cartItems == 0) {
@@ -251,10 +237,16 @@ addToCartBtn.addEventListener("click", function () {
         });
 
       alert("Item added to cart!");
-    } else {
-      alert("Item added to cart!");
-    }
+    } else alert("Item added to cart!");
   }
+}
+
+orderOptions.forEach((option) => {
+  const address = document.querySelector(".address-input-container");
+  option.addEventListener("click", function () {
+    if (this.id === "delivery") address.classList.add("show");
+    else address.classList.remove("show");
+  });
 });
 
 let total = 0;
@@ -310,10 +302,9 @@ function placeOrder() {
   document.querySelector("p.order-option-error").classList.remove("show");
   document.querySelector("p.address-error").classList.remove("show");
   hasError = true;
-  if (payment.value === "") {
-    console.log("empty bitch");
+  if (payment.value === "")
     document.querySelector("p.empty-payment").classList.add("show");
-  } else {
+  else {
     if (payment.value < total) {
       document.querySelector("p.payment-error").classList.add("show");
     } else {
@@ -332,7 +323,6 @@ function placeOrder() {
           if (document.getElementById("address").value === "") {
             document.querySelector("p.address-error").classList.add("show");
           } else {
-            console.log("no error");
             hasError = false;
           }
         } else hasError = false;
@@ -349,6 +339,7 @@ function placeOrder() {
     payment.value = "";
 
     if (isOrderOptionDelivery) {
+      const address = document.getElementById("address");
       document.querySelector(".change-text").textContent = `₱ ${change}`;
       document.querySelector(".address-text").textContent = address.value;
       document.querySelector(".address-text-container").classList.add("show");
