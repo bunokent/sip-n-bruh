@@ -167,6 +167,24 @@ function generateId() {
   return randomNumber;
 }
 
+function checkExistingOrder(flavor, quantity, sugarLevel, addOn) {
+  for (let i = 0; i < ids.length; i++) {
+    id = ids[i];
+    if (
+      orders[id][0] === flavor &&
+      orders[id][2] === sugarLevel &&
+      orders[id][3] === addOn
+    ) {
+      currentQuantity = parseInt(orders[id][1]);
+      currentQuantity += parseInt(quantity);
+      orders[id][1] = currentQuantity;
+      document.getElementById(`cart-${id}`).textContent = orders[id][1];
+      return true;
+    }
+  }
+  return false;
+}
+
 const addToCartBtn = document.getElementById("add-to-cart-btn");
 const cartContainer = document.querySelector(".cart-container");
 addToCartBtn.addEventListener("click", function () {
@@ -184,55 +202,58 @@ addToCartBtn.addEventListener("click", function () {
     errorMessage.classList.add("show-error");
   } else {
     errorMessage.classList.remove("show-error");
-    cartItems++;
     document.querySelector("#checkout-btn").classList.add("show");
     document.querySelector(".empty-cart-container").classList.add("hide");
-    document.querySelector(".cart-count p").textContent = cartItems;
 
     const flavor = flavors[flavorSelect.value - 1];
     const quantity = document.getElementById("order-quantity").value;
     const sugarLevel = sugarLevelEl.value;
 
-    const details = [flavor, quantity, sugarLevel, selectedAddOn];
-    const id = generateId();
-    orders[id] = details;
-    console.log(orders);
+    if (!checkExistingOrder(flavor, quantity, sugarLevel, selectedAddOn)) {
+      cartItems++;
+      document.querySelector(".cart-count p").textContent = cartItems;
+      const details = [flavor, quantity, sugarLevel, selectedAddOn];
+      const id = generateId();
+      orders[id] = details;
 
-    const cartItem = document.createElement("div");
-    cartItem.classList.add("cart");
-    cartItem.innerHTML = `
+      const cartItem = document.createElement("div");
+      cartItem.classList.add("cart");
+      cartItem.innerHTML = `
       <div class="title">
         <img src="./assets/menu/coffee${flavorSelect.value}-crop.png" alt="coffee flavor" width="100px" style="border-radius: 50%" />
         <p>${flavor}</p>
       </div>
       <div class="cart-description">
-        <p>Quantity: <span>${quantity}</span></p>
+        <p>Quantity: <span id="cart-${id}">${quantity}</span></p>
         <p>Sugar Level: <span>${sugarLevel}</span></p>
         <p>Add On: <span>${selectedAddOn}</span></p>
       </div>
       <button class="remove-cart" style="margin-top: 0">Remove</button>
     `;
 
-    cartContainer.appendChild(cartItem);
+      cartContainer.appendChild(cartItem);
 
-    cartItem
-      .querySelector(".remove-cart")
-      .addEventListener("click", function () {
-        cartContainer.removeChild(cartItem);
-        cartItems--;
-        delete orders[id];
-        console.log(orders);
+      cartItem
+        .querySelector(".remove-cart")
+        .addEventListener("click", function () {
+          cartContainer.removeChild(cartItem);
+          cartItems--;
+          delete orders[id];
+          console.log(orders);
 
-        document.querySelector(".cart-count p").textContent = cartItems;
-        if (cartItems == 0) {
-          document.querySelector("#checkout-btn").classList.remove("show");
-          document
-            .querySelector(".empty-cart-container")
-            .classList.remove("hide");
-        }
-      });
+          document.querySelector(".cart-count p").textContent = cartItems;
+          if (cartItems == 0) {
+            document.querySelector("#checkout-btn").classList.remove("show");
+            document
+              .querySelector(".empty-cart-container")
+              .classList.remove("hide");
+          }
+        });
 
-    alert("Item added to cart!");
+      alert("Item added to cart!");
+    } else {
+      alert("Item added to cart!");
+    }
   }
 });
 
