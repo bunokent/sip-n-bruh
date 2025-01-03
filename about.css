@@ -1,0 +1,173 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", serif;
+}
+
+body {
+  height: 100vh;
+  background-color: #bd8d61;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Navbar {
+  margin-top: 40px;
+  position: fixed;
+  top: 0;
+  left: -160px;
+  width: 100%;
+  background-color: transparent;
+  filter: drop-shadow(10px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 100;
+}
+
+.Navbar nav a {
+  font-size: 25px;
+  color: black;
+  margin-left: 40px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+  position: relative;
+}
+
+.Navbar nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 3px;
+  border-radius: 3px;
+  background-color: #bd8d61;
+  transition: all 500ms ease;
+}
+
+.Navbar nav a:hover::after,
+.Navbar nav a.active::after {
+  width: 100%;
+}
+
+.Brown {
+  width: 960px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Logo img {
+  width: 383px;
+  height: 338px;
+  margin-top: 45px;
+}
+
+.Brand {
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Brand h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 86px;
+  color: white;
+}
+
+.Brand h3 {
+  font-size: 36px;
+  color: #553a23;
+}
+
+.Paragraph p {
+  font-size: 16px;
+  text-align: justify;
+  text-indent: 2rem;
+  color: white;
+  margin: 20px 100px 0 100px;
+  line-height: 1.6;
+}
+
+.White {
+  width: 960px;
+  background-color: #e7e1d9;
+  height: 100vh;
+}
+
+.Informations {
+  margin: 140px 0px 0px 140px;
+  margin-bottom: 0px;
+}
+
+.Informations p {
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  color: black;
+}
+
+.Informations p i {
+  color: #bd8d61;
+  margin-right: 15px;
+  font-size: 25px;
+}
+
+.social-icons {
+  margin: 140px;
+  margin-top: 3rem;
+  margin-bottom: 0px;
+}
+
+.social-icons h3 {
+  font-weight: bold;
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  background-color: transparent;
+  border: 0.2rem solid #bd8d61;
+  font-size: 2rem;
+  border-radius: 50%;
+  margin: 2rem 1.5rem 3rem 0;
+  transition: 0.3s ease;
+  color: #bd8d61;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #e7e1d9;
+  background-color: #bd8d61;
+}
+
+.Map {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Map iframe {
+  height: 250px;
+  border-radius: 10px;
+}
