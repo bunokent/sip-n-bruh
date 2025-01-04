@@ -251,6 +251,7 @@ orderOptions.forEach((option) => {
 
 let total = 0;
 const checkoutContainer = document.querySelector(".checkout-container");
+
 function checkOut() {
   document.getElementById("checkout-first-process").classList.add("show");
   document.getElementById("checkout-process").classList.add("show");
@@ -294,10 +295,12 @@ function exitCheckout() {
 
 function placeOrder() {
   const payment = document.getElementById("payment");
+  const name = document.getElementById("name");
   const orderOptions = document.getElementsByName("order-option");
   isOrderOptionDelivery = false;
 
   document.querySelector("p.payment-error").classList.remove("show");
+  document.querySelector("p.name-error").classList.remove("show");
   document.querySelector("p.empty-payment").classList.remove("show");
   document.querySelector("p.order-option-error").classList.remove("show");
   document.querySelector("p.address-error").classList.remove("show");
@@ -308,30 +311,36 @@ function placeOrder() {
     if (payment.value < total) {
       document.querySelector("p.payment-error").classList.add("show");
     } else {
-      isOrderOptionEmpty = true;
-      orderOptions.forEach((option) => {
-        if (option.checked) {
-          if (option.id === "delivery") isOrderOptionDelivery = true;
-          isOrderOptionEmpty = false;
-        }
-      });
-
-      if (isOrderOptionEmpty) {
-        document.querySelector(".order-option-error").classList.add("show");
-      } else {
-        if (isOrderOptionDelivery) {
-          if (document.getElementById("address").value === "") {
-            document.querySelector("p.address-error").classList.add("show");
-          } else {
-            hasError = false;
+      if (name.value === "")
+        document.querySelector("p.name-error").classList.add("show");
+      else {
+        isOrderOptionEmpty = true;
+        orderOptions.forEach((option) => {
+          if (option.checked) {
+            if (option.id === "delivery") isOrderOptionDelivery = true;
+            isOrderOptionEmpty = false;
           }
-        } else hasError = false;
+        });
+
+        if (isOrderOptionEmpty) {
+          document.querySelector(".order-option-error").classList.add("show");
+        } else {
+          if (isOrderOptionDelivery) {
+            if (document.getElementById("address").value === "") {
+              document.querySelector("p.address-error").classList.add("show");
+            } else {
+              hasError = false;
+            }
+          } else hasError = false;
+        }
       }
     }
   }
-
   if (hasError) document.getElementById("checkout-process").scrollTop = 0;
   else {
+    const name = document.getElementById("name");
+    document.getElementById("name-text").textContent = name.value;
+    name.value = "";
     change = payment.value - total;
     document.querySelector(".total-text").textContent = `₱ ${total}`;
     document.querySelector(".payment-text").textContent = `₱ ${payment.value}`;

@@ -145,6 +145,7 @@
           </div>
           <p class="empty-payment">Please enter your payment</p>
           <p class="payment-error">Not enough payment</p>
+          <p class="name-error">Please input your name</p>
           <p class="order-option-error">Please select an order option</p>
           <p class="address-error">Please input your address</p>
           <p>Order Details</p>
@@ -163,6 +164,7 @@
             placeholder="Enter your Payment"
             style="margin-top: 1.5rem; padding: 1rem"
           />
+          <input type="text" placeholder="Enter your Name" id="name" />
           <p>Order Options</p>
           <div class="order-options-container">
             <div>
@@ -217,6 +219,7 @@
               width="150px"
               style="padding-block: 0.4rem"
             />
+            <p id="name-text"></p>
             <div class="date-time-container">
               <p id="date"></p>
               <p id="time"></p>

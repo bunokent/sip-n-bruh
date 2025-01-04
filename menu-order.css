@@ -49,12 +49,17 @@
   gap: 4rem;
 }
 
-input[type="number"] {
+input[type="number"],
+#name {
   width: 100%;
   padding: 0.5rem;
   font-weight: 700;
   border: 1px solid brown;
   margin-bottom: 2rem;
+}
+
+#name {
+  padding-block: 1rem;
 }
 
 input[type="range"] {
@@ -363,6 +368,7 @@ p.note {
 
 p.payment-error,
 p.empty-payment,
+p.name-error,
 p.order-option-error,
 p.address-error {
   position: absolute;
@@ -378,6 +384,7 @@ p.address-error {
 
 p.payment-error.show,
 p.empty-payment.show,
+p.name-error.show,
 p.order-option-error.show,
 p.address-error.show {
   opacity: 1;
@@ -456,4 +463,9 @@ p.address-error.show {
 .date-time-container {
   display: flex;
   gap: 1rem;
+}
+
+p#name-text {
+  font-weight: 700;
+  font-size: 1.1rem;
 }
