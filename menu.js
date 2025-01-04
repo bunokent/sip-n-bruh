@@ -226,6 +226,7 @@ function addToCart() {
           cartContainer.removeChild(cartItem);
           cartItems--;
           delete orders[id];
+          ids = ids.filter((item) => item !== id);
 
           document.querySelector(".cart-count p").textContent = cartItems;
           if (cartItems == 0) {

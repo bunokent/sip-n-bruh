@@ -142,7 +142,6 @@ function hideCart() {
 let cartItems = 0;
 
 let orders = {};
-let ids = [];
 
 const addToCartBtn = document.getElementById("add-to-cart-btn");
 const cartContainer = document.querySelector(".cart-container");
@@ -178,7 +177,7 @@ addToCartBtn.addEventListener("click", function () {
       .addEventListener("click", function () {
         cartContainer.removeChild(cartItem);
         cartItems--;
-        delete orders[id];
+        delete orders[merchandiseSelect.value];
 
         document.querySelector(".cart-count p").textContent = cartItems;
         if (cartItems == 0) {
@@ -365,7 +364,6 @@ function exitPaymentSuccess() {
     document.querySelector("#checkout-btn").classList.remove("show");
     document.querySelector(".empty-cart-container").classList.remove("hide");
     orders = {};
-    ids = [];
     cartItems = 0;
     total = 0;
     document.querySelector(".cart-count p").textContent = cartItems;
