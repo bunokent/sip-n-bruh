@@ -149,13 +149,14 @@ addToCartBtn.addEventListener("click", function () {
   document.querySelector(".empty-cart-container").classList.add("hide");
   document.querySelector("#checkout-btn").classList.add("show");
   const quantity = parseInt(document.getElementById("order-quantity").value);
+  const currentItem = merchandiseSelect.value;
 
-  if (orders[merchandiseSelect.value] === undefined) {
+  if (orders[currentItem] === undefined) {
     cartItems++;
     document.querySelector(".cart-count p").textContent = cartItems;
 
-    const merchandise = merchandises[merchandiseSelect.value][0];
-    orders[merchandiseSelect.value] = quantity;
+    const merchandise = merchandises[currentItem][0];
+    orders[currentItem] = quantity;
 
     const cartItem = document.createElement("div");
     cartItem.classList.add("cart");
@@ -165,7 +166,7 @@ addToCartBtn.addEventListener("click", function () {
         <p>${merchandise}</p>
       </div>
       <div class="cart-description">
-        <p>Quantity: <span id="cart-${merchandiseSelect.value}">${quantity}</span></p>
+        <p>Quantity: <span id="cart-${currentItem}">${quantity}</span></p>
       </div>
       <button class="remove-cart" style="margin-top: 0">Remove</button>
     `;
@@ -177,7 +178,7 @@ addToCartBtn.addEventListener("click", function () {
       .addEventListener("click", function () {
         cartContainer.removeChild(cartItem);
         cartItems--;
-        delete orders[merchandiseSelect.value];
+        delete orders[currentItem];
 
         document.querySelector(".cart-count p").textContent = cartItems;
         if (cartItems == 0) {
@@ -188,9 +189,9 @@ addToCartBtn.addEventListener("click", function () {
         }
       });
   } else {
-    orders[merchandiseSelect.value] += quantity;
-    document.getElementById(`cart-${merchandiseSelect.value}`).textContent =
-      orders[merchandiseSelect.value];
+    orders[currentItem] += quantity;
+    document.getElementById(`cart-${currentItem}`).textContent =
+      orders[currentItem];
   }
 
   alert("Item added to cart!");
