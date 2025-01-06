@@ -165,13 +165,13 @@ main h1 {
   color: white;
   font-family: "Playfair Display", serif;
   font-weight: 900;
-  font-size: 80px;
+  font-size: 70px;
   letter-spacing: 3px;
 }
 
 main h2 {
   color: #fef6d9;
-  font-size: 40px;
+  font-size: 30px;
   letter-spacing: 3px;
 }
 
@@ -183,7 +183,7 @@ main a {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.3rem 3rem;
+  padding: 0.2rem 3.2rem;
   margin-top: 2rem;
   gap: 1rem;
   font-size: 1.2rem;
