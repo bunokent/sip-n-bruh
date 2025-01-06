@@ -182,6 +182,8 @@ function addToCart() {
     if (addOns[i].checked) {
       isAddOnEmpty = false;
       selectedAddOn = addOns[i].id;
+      selectedAddOn =
+        selectedAddOn.charAt(0).toUpperCase() + selectedAddOn.slice(1);
       break;
     }
   }
