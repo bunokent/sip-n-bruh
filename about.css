@@ -71,7 +71,7 @@ body {
 }
 
 .Logo img {
-  width: 383px;
+  width: 350px;
   height: 338px;
   margin-top: 45px;
 }
@@ -86,7 +86,7 @@ body {
 
 .Brand h1 {
   font-family: "Playfair Display", serif;
-  font-size: 70px;
+  font-size: 65px;
   color: white;
 }
 
@@ -100,8 +100,7 @@ body {
   text-align: justify;
   text-indent: 2rem;
   color: white;
-  margin-top: 30px;
-  margin: 1rem 100px 0 100px;
+  margin: 0rem 100px 0 100px;
   line-height: 1.6;
 }
 
@@ -130,9 +129,6 @@ body {
 }
 
 .social-icons {
-  margin: 140px;
-  margin-top: 2.5rem;
-  margin-bottom: 0px;
   margin: 2rem 0rem 0rem 8.75rem;
 }
 
@@ -150,7 +146,7 @@ body {
   border: 0.2rem solid #bd8d61;
   font-size: 2rem;
   border-radius: 50%;
-  margin: 2rem 1.5rem 3rem 0;
+  margin: 2rem 1.5rem 2rem 0;
   transition: 0.3s ease;
   color: #bd8d61;
   text-decoration: none;
