@@ -44,9 +44,10 @@
   border-radius: 50%;
 }
 
-.add-ons-container {
+.add-ons-container > div {
   display: flex;
-  gap: 4rem;
+  flex-direction: column;
+  margin-top: 1rem;
 }
 
 input[type="number"],
