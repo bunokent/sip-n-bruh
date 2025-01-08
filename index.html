@@ -4,87 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sip N' Bruh</title>
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="index.css" />
-    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
   </head>
   <body>
-    <video id="bg-video" src="./assets/home/bg.mp4" autoplay loop muted></video>
-    <div id="overlay"></div>
-    <header>
-      <div>
-        <div class="music-container">
-          <div>
-            <img
-              src="./assets/home/music-note.png"
-              alt="music icon"
-              width="32px"
-            />
-          </div>
-          <span>Listen to Bruh Vibes</span>
-        </div>
-      </div>
-      <nav>
-        <ul>
-          <li class="text-link active"><a href="index.html">Home</a></li>
-          <li class="text-link"><a href="menu.html">Menu</a></li>
-          <li class="text-link"><a href="merchandise.html">Merchandise</a></li>
-          <li class="text-link"><a href="about.html">About</a></li>
-          <li class="icon-link">
-            <a href="login.html"
-              ><svg
-                width="60"
-                height="60"
-                viewBox="0 0 60 60"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.5 48C14.6529 46.7088 20.0526 40.7667 21.635 40.7667H38.366C40.659 40.7667 45.3399 45.6922 46.5 47.4285M54 30C54 43.2548 43.2548 54 30 54C16.7452 54 6 43.2548 6 30C6 16.7452 16.7452 6 30 6C43.2548 6 54 16.7452 54 30ZM38.5971 21.8199C38.5971 17.2411 34.7318 13.5 30.0007 13.5C25.2698 13.5 21.4043 17.2411 21.4043 21.8199C21.4043 26.3987 25.2698 30.1398 30.0007 30.1398C34.7317 30.1398 38.5971 26.3987 38.5971 21.8199Z"
-                  stroke="white"
-                  stroke-width="2"
-                />
-              </svg>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
     <main>
-      <img src="./assets/logo.png" alt="sip n' bruh logo" />
-      <h1>Sip N' Bruh</h1>
-      <h2>Where every sip feels like a vibe</h2>
-      <a href="menu.html">
-        View Menu
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="60"
-          height="60"
-          viewBox="0 0 60 60"
-          fill="none"
-        >
-          <path
-            d="M30 13.725V51.225M19.375 21.225H13.75M21.25 28.725H13.75M55 41.85V11.675C55 8.675 52.55 6.45 49.575 6.7H49.425C44.175 7.15 36.2 9.825 31.75 12.625L31.325 12.9C30.6 13.35 29.4 13.35 28.675 12.9L28.05 12.525C23.6 9.75 15.65 7.1 10.4 6.675C7.425 6.425 5 8.675 5 11.65V41.85C5 44.25 6.95 46.5 9.35 46.8L10.075 46.9C15.5 47.625 23.875 50.375 28.675 53L28.775 53.05C29.45 53.425 30.525 53.425 31.175 53.05C35.975 50.4 44.375 47.625 49.825 46.9L50.65 46.8C53.05 46.5 55 44.25 55 41.85Z"
-            stroke="black"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </a>
+      <h1>Login</h1>
+      <form action="home.html">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+          required
+        />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <div>
+          <div>
+            <input type="checkbox" id="remember-me" />
+            <label for="remember-me">Remember me</label>
+          </div>
+        </div>
+        <button type="submit" id="submit">Log in</button>
+        <p>Didn't have an account? <a href="./register.html">Register</a></p>
+      </form>
     </main>
-    <audio src="./assets/home/bruh-vibe.mp3" id="music" hidden loop></audio>
   </body>
-  <script>
-    const playEl = document.querySelector(".music-container");
-    const music = document.getElementById("music");
-    playEl.addEventListener("click", function () {
-      music.play();
-    });
-  </script>
 </html>
