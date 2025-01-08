@@ -50,17 +50,12 @@
   margin-top: 1rem;
 }
 
-input[type="number"],
-#name {
+input[type="number"] {
   width: 100%;
   padding: 0.5rem;
   font-weight: 700;
   border: 1px solid brown;
   margin-bottom: 2rem;
-}
-
-#name {
-  padding-block: 1rem;
 }
 
 input[type="range"] {

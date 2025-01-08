@@ -191,6 +191,50 @@ main a {
   transition: all 500ms ease;
 }
 
+.login-logout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: center;
+  transition: all 500ms ease;
+}
+
+#user-authentication #authentication-icon {
+  display: block;
+}
+
+#user-authentication {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+.login-logout-container:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.username-text {
+  color: white;
+}
+
+main a {
+  background-color: white;
+  color: black;
+  border-radius: 20rem;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 3.2rem;
+  margin-top: 2rem;
+  gap: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: all 500ms ease;
+}
+
 main a > svg {
   width: 40px;
 }

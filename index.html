@@ -37,9 +37,27 @@
             <label for="remember-me">Remember me</label>
           </div>
         </div>
-        <button type="submit" id="submit">Log in</button>
+        <button type="submit" id="submit" onclick="saveData()">Log in</button>
         <p>Didn't have an account? <a href="./register.html">Register</a></p>
       </form>
     </main>
   </body>
+  <script>
+    if (
+      document.referrer.includes("menu.html") ||
+      document.referrer.includes("merchandise.html")
+    ) {
+      alert("Please log in first to place an order.");
+    }
+
+    function saveData() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if ((username !== "") & (password !== "")) {
+        localStorage.setItem("username", username);
+        localStorage.setItem("password", password);
+      }
+    }
+  </script>
 </html>

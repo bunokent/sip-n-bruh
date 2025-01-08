@@ -93,14 +93,20 @@ const addOns = document.getElementsByName("add-on");
 const orderOptions = document.getElementsByName("order-option");
 
 function order() {
-  flavorSelect.value = currentFlavor;
-  document.getElementById(
-    "order-img"
-  ).src = `./assets/menu/coffee${currentFlavor}-crop.png`;
-  document.getElementById("first-process").classList.remove("fade-out");
-  orderOverlay.style.opacity = "1";
-  orderOverlay.style.pointerEvents = "auto";
-  document.getElementById("first-process").classList.add("fade-in");
+  const username = localStorage.getItem("username");
+
+  if (username !== "") {
+    flavorSelect.value = currentFlavor;
+    document.getElementById(
+      "order-img"
+    ).src = `./assets/menu/coffee${currentFlavor}-crop.png`;
+    document.getElementById("first-process").classList.remove("fade-out");
+    orderOverlay.style.opacity = "1";
+    orderOverlay.style.pointerEvents = "auto";
+    document.getElementById("first-process").classList.add("fade-in");
+  } else {
+    window.location.href = "./index.html";
+  }
 }
 
 function exitOrder() {
@@ -298,12 +304,10 @@ function exitCheckout() {
 
 function placeOrder() {
   const payment = document.getElementById("payment");
-  const name = document.getElementById("name");
   const orderOptions = document.getElementsByName("order-option");
   isOrderOptionDelivery = false;
 
   document.querySelector("p.payment-error").classList.remove("show");
-  document.querySelector("p.name-error").classList.remove("show");
   document.querySelector("p.empty-payment").classList.remove("show");
   document.querySelector("p.order-option-error").classList.remove("show");
   document.querySelector("p.address-error").classList.remove("show");
@@ -314,36 +318,33 @@ function placeOrder() {
     if (payment.value < total) {
       document.querySelector("p.payment-error").classList.add("show");
     } else {
-      if (name.value === "")
-        document.querySelector("p.name-error").classList.add("show");
-      else {
-        isOrderOptionEmpty = true;
-        orderOptions.forEach((option) => {
-          if (option.checked) {
-            if (option.id === "delivery") isOrderOptionDelivery = true;
-            isOrderOptionEmpty = false;
-          }
-        });
-
-        if (isOrderOptionEmpty) {
-          document.querySelector(".order-option-error").classList.add("show");
-        } else {
-          if (isOrderOptionDelivery) {
-            if (document.getElementById("address").value === "") {
-              document.querySelector("p.address-error").classList.add("show");
-            } else {
-              hasError = false;
-            }
-          } else hasError = false;
+      isOrderOptionEmpty = true;
+      orderOptions.forEach((option) => {
+        if (option.checked) {
+          if (option.id === "delivery") isOrderOptionDelivery = true;
+          isOrderOptionEmpty = false;
         }
+      });
+
+      if (isOrderOptionEmpty) {
+        document.querySelector(".order-option-error").classList.add("show");
+      } else {
+        if (isOrderOptionDelivery) {
+          if (document.getElementById("address").value === "") {
+            document.querySelector("p.address-error").classList.add("show");
+          } else {
+            hasError = false;
+          }
+        } else hasError = false;
       }
     }
   }
   if (hasError) document.getElementById("checkout-process").scrollTop = 0;
   else {
-    const name = document.getElementById("name");
-    document.getElementById("name-text").textContent = name.value;
-    name.value = "";
+    const name = localStorage.getItem("name")
+      ? localStorage.getItem("name")
+      : localStorage.getItem("username");
+    document.getElementById("name-text").textContent = name;
     change = payment.value - total;
     document.querySelector(".total-text").textContent = `₱ ${total}`;
     document.querySelector(".payment-text").textContent = `₱ ${payment.value}`;

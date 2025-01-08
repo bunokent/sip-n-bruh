@@ -36,21 +36,20 @@
           <li class="text-link"><a href="merchandise.html">Merchandise</a></li>
           <li class="text-link"><a href="about.html">About</a></li>
           <li class="icon-link">
-            <a href="index.html"
-              ><svg
-                width="60"
-                height="60"
-                viewBox="0 0 60 60"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <div class="login-logout-container">
+              <button
+                href="index.html"
+                id="user-authentication"
+                onclick="userAuthentication()"
               >
-                <path
-                  d="M13.5 48C14.6529 46.7088 20.0526 40.7667 21.635 40.7667H38.366C40.659 40.7667 45.3399 45.6922 46.5 47.4285M54 30C54 43.2548 43.2548 54 30 54C16.7452 54 6 43.2548 6 30C6 16.7452 16.7452 6 30 6C43.2548 6 54 16.7452 54 30ZM38.5971 21.8199C38.5971 17.2411 34.7318 13.5 30.0007 13.5C25.2698 13.5 21.4043 17.2411 21.4043 21.8199C21.4043 26.3987 25.2698 30.1398 30.0007 30.1398C34.7317 30.1398 38.5971 26.3987 38.5971 21.8199Z"
-                  stroke="white"
-                  stroke-width="2"
+                <img
+                  id="authentication-icon"
+                  src="./assets/home/logout.png"
+                  alt="logout"
                 />
-              </svg>
-            </a>
+              </button>
+              <p class="username-text"></p>
+            </div>
           </li>
         </ul>
       </nav>
@@ -86,5 +85,35 @@
     playEl.addEventListener("click", function () {
       music.play();
     });
+
+    const icon = document.getElementById("authentication-icon");
+
+    function changeIcon() {
+      const username = localStorage.getItem("username");
+      if (username !== "") {
+        icon.src = "./assets/home/logout.png";
+        document.querySelector(".username-text").textContent = username;
+      } else {
+        icon.src = "./assets/home/login.png";
+        document.querySelector(".username-text").textContent = "Login";
+      }
+    }
+    changeIcon();
+
+    function userAuthentication() {
+      const username = localStorage.getItem("username");
+      if (username !== "") {
+        const response = confirm("Are you sure you want to logout?");
+        if (response) {
+          localStorage.setItem("username", "");
+          localStorage.setItem("password", "");
+          localStorage.setItem("name", "");
+
+          changeIcon();
+        }
+      } else {
+        window.location.href = "./index.html";
+      }
+    }
   </script>
 </html>
